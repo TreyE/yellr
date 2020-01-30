@@ -29,6 +29,7 @@ defmodule DataTasks.RetrieveResultContributions do
       end
       set_as_current_build_result(build_result)
     end)
+    Yellr.broadcast_branch_updates()
   end
 
   defp query_build_result_by_id(br_id) do

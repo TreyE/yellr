@@ -11,6 +11,7 @@ defmodule Yellr.Command.ToggleBranchMonitor do
         }
     )
     Repo.update!(cs)
+    Yellr.broadcast_branch_updates()
     record
   end
 end

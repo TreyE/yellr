@@ -34,4 +34,8 @@ defmodule Yellr do
   def toggle_monitor_by_id(branch_id, monitor_val) do
     Yellr.Command.ToggleBranchMonitor.toggle_monitor_by_id(branch_id, monitor_val)
   end
+
+  def broadcast_branch_updates() do
+    YellrWeb.Channels.BranchUpdateChannel.broadcast_branches_updated()
+  end
 end

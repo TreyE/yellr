@@ -16,6 +16,7 @@ defmodule DataTasks.CreateInitialBuildResult do
       build_result = build_contribution_from(first_commit, branch_id, stat)
       Repo.update_all(find_branch_query(branch_id), set: [current_result_id: build_result.id])
     end)
+    Yellr.broadcast_branch_updates()
   end
 
   defp find_branch_with_project_query(id) do

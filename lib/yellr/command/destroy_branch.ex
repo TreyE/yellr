@@ -13,6 +13,7 @@ defmodule Yellr.Command.DestroyBranch do
       destroy_build_results(branch_id)
       Repo.delete!(record)
     end)
+    Yellr.broadcast_branch_updates()
     record
   end
 

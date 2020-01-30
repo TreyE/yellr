@@ -20,3 +20,5 @@
     <source src="<%= Routes.static_path(@conn, "/media/willhelm.mp3") %>" type="audio/mpeg">
   </audio>
 <% end %>
+
+<span id="yellr_branch_update_listener"></span>

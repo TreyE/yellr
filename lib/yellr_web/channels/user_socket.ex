@@ -1,6 +1,8 @@
 defmodule YellrWeb.UserSocket do
   use Phoenix.Socket
 
+  channel("branch_updates", YellrWeb.Channels.BranchUpdateChannel)
+
   ## Channels
   # channel "room:*", YellrWeb.RoomChannel
 
