@@ -27,7 +27,8 @@ defmodule Yellr.Command.CreateProject do
       %Branch{},
       %{
         project_id: project_record.id,
-        name: "master"
+        name: "master",
+        monitored: true
       }
     )
     {:ok, branch_record} = Repo.insert(b_cs)

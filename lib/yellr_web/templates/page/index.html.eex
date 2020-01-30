@@ -1,35 +1,22 @@
-<section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>A productive web framework that<br/>does not compromise speed or maintainability.</p>
-</section>
+<div class="row resultcontainer">
+<%= for branch <- @branches do %>
+  <div class="card <%= branch_status_class(branch) %> floatcard">
+    <div class="card-body">
+      <h3 class="card-title"><%= branch.project %></h3>
+      <h4 class="card-title"><%= branch.branch %></h4>
+      <h4 class="card-title"><%= build_time(branch) %></h4>
+      <%= unless branch.passing do %>
+      <div class="card-text">
+      <p class="lead"><%= contributor_list(branch) %></p>
+      </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+</div>
 
-<section class="row">
-  <article class="column">
-    <h2>Resources</h2>
-    <ul>
-      <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.4/CHANGELOG.md">v1.4 Changelog</a>
-      </li>
-    </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on Freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
-      </li>
-    </ul>
-  </article>
-</section>
+<%= if broken_builds(@branches) do %>
+  <audio autoplay preload>
+    <source src="<%= Routes.static_path(@conn, "/media/willhelm.mp3") %>" type="audio/mpeg">
+  </audio>
+<% end %>

@@ -9,17 +9,23 @@ defmodule DataTasks.CreateInitialBuildResult do
 
   @impl Oban.Worker
   def perform(%{"branch_id" => branch_id, "initial_status" => stat}, _job) do
-    branch = Repo.one(find_branch_query(branch_id))
+    branch = Repo.one(find_branch_with_project_query(branch_id))
     client = GitData.client_for(branch.project.repository_url)
     {:ok, first_commit} = GitData.branch_head(client, branch.name)
     build_result = build_contribution_from(first_commit, branch_id, stat)
     Repo.update_all(find_branch_query(branch_id), set: [current_result_id: build_result.id])
   end
 
-  defp find_branch_query(id) do
+  defp find_branch_with_project_query(id) do
     (from b in Yellr.Data.Branch,
      where: b.id == ^id,
      preload: [:project]
+    )
+  end
+
+  defp find_branch_query(id) do
+    (from b in Yellr.Data.Branch,
+     where: b.id == ^id
     )
   end
 
