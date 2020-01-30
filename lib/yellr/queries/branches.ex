@@ -13,4 +13,10 @@ defmodule Yellr.Queries.Branches do
     )
     Repo.all(query)
   end
+
+  def find_branch_by_name_and_project_id(branch_name, project_id) do
+    query = (from b in Yellr.Data.Branch,
+      where: (b.name == ^branch_name) and (b.project_id == ^project_id))
+    Repo.one(query)
+  end
 end

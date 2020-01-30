@@ -1,7 +1,6 @@
 defmodule Yellr.Command.CreateBranch do
   alias Yellr.Data.Branch
   alias Yellr.Repo
-  alias DataTasks.CreateInitialBuildResult
 
   def create_branch_with_status(
     project_id,
@@ -18,10 +17,6 @@ defmodule Yellr.Command.CreateBranch do
       }
     )
     {:ok, branch_record} = Repo.insert(b_cs)
-    CreateInitialBuildResult.new(%{
-      "branch_id" => branch_record.id,
-      "initial_status" => initial_status
-    })
-    |> Oban.insert!()
+    DataTasks.enqueue_create_initial_build_result(branch_record.id, initial_status)
   end
 end

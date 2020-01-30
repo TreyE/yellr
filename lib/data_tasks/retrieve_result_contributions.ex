@@ -1,4 +1,4 @@
-defmodule DataTasks.RetrieveResultCombinations do
+defmodule DataTasks.RetrieveResultContributions do
   use Oban.Worker, queue: :git
 
   alias Yellr.Repo
