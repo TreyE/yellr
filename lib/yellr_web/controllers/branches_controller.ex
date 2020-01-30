@@ -18,4 +18,9 @@ defmodule YellrWeb.BranchesController do
     record = Yellr.destroy_branch_by_id(branch_id)
     redirect(conn, to: YellrWeb.Router.Helpers.projects_path(conn, :show, record.project_id))
   end
+
+  def update(conn, %{"id" => branch_id, "monitor" => monitor_val}) do
+    record = Yellr.toggle_monitor_by_id(branch_id, monitor_val)
+    redirect(conn, to: YellrWeb.Router.Helpers.projects_path(conn, :show, record.project_id))
+  end
 end

@@ -22,7 +22,7 @@ defmodule YellrWeb.Router do
   scope "/", YellrWeb do
     pipe_through :browser
 
-    resources "/branches", BranchesController, only: [:new, :create, :delete]
+    resources "/branches", BranchesController, only: [:new, :create, :delete, :update]
     resources "/projects", ProjectsController, only: [:index, :show]
   end
 

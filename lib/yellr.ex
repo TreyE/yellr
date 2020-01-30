@@ -30,4 +30,8 @@ defmodule Yellr do
   def destroy_branch_by_id(branch_id) do
     Yellr.Command.DestroyBranch.destroy_branch_by_id(branch_id)
   end
+
+  def toggle_monitor_by_id(branch_id, monitor_val) do
+    Yellr.Command.ToggleBranchMonitor.toggle_monitor_by_id(branch_id, monitor_val)
+  end
 end

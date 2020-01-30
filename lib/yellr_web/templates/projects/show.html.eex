@@ -28,7 +28,14 @@
         <tr>
           <td><%= branch.name %></td>
           <td><%= branch.monitored %></td>
-          <td><%= link "Destroy", to: Routes.branches_path(@conn, :delete, branch.id), method: :delete %></td>
+          <td>
+            <%= if branch.monitored do %>
+              <%= link "Unmonitor", to: Routes.branches_path(@conn, :update, branch.id, monitor: !branch.monitored), method: :put, class: "btn btn-secondary" %>
+            <% else %>
+              <%= link "Monitor", to: Routes.branches_path(@conn, :update, branch.id, monitor: !branch.monitored), method: :put, class: "btn btn-success" %>
+            <% end %>
+            <%= link "Destroy", to: Routes.branches_path(@conn, :delete, branch.id), method: :delete, class: "btn btn-danger", data: [confirm: "This will destroy all results as well, are you sure?"] %>
+          </td>
         </tr>
       <% end %>
     </tbody>
