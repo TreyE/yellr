@@ -20,13 +20,6 @@ defmodule Yellr.Command.CreateProject do
         repository_url: create_project_request.repository_url
       }
     )
-    {:ok, project_record} = Repo.insert(p_cs)
-    Yellr.Command.CreateBranch.create_branch_with_status(
-      project_record.id,
-      "master",
-      true,
-      create_project_request.initial_status
-    )
-    {:ok, changeset}
+    Repo.insert(p_cs)
   end
 end

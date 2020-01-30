@@ -23,7 +23,7 @@ defmodule Yellr.Command.CreateBranch do
     {:ok, branch_record}
   end
 
-  def create_branch_with_status(
+  defp create_branch_with_status(
     project_id,
     branch_name,
     is_monitored,
