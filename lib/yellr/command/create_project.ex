@@ -1,9 +1,7 @@
 defmodule Yellr.Command.CreateProject do
   alias Yellr.Validators.CreateProjectRequest
   alias Yellr.Data.Project
-  alias Yellr.Data.Branch
   alias Yellr.Repo
-  alias DataTasks.CreateInitialBuildResult
 
   def create_project_from_params(params) do
     cs = CreateProjectRequest.new(params)
@@ -23,20 +21,12 @@ defmodule Yellr.Command.CreateProject do
       }
     )
     {:ok, project_record} = Repo.insert(p_cs)
-    b_cs = Branch.changeset(
-      %Branch{},
-      %{
-        project_id: project_record.id,
-        name: "master",
-        monitored: true
-      }
+    Yellr.Command.CreateBranch.create_branch_with_status(
+      project_record.id,
+      "master",
+      true,
+      create_project_request.initial_status
     )
-    {:ok, branch_record} = Repo.insert(b_cs)
-    CreateInitialBuildResult.new(%{
-      "branch_id" => branch_record.id,
-      "initial_status" => create_project_request.initial_status
-    })
-    |> Oban.insert!()
     {:ok, changeset}
   end
 end
