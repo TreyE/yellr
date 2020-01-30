@@ -19,6 +19,13 @@ defmodule YellrWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/", YellrWeb do
+    pipe_through :browser
+
+    resources "/branches", BranchesController, only: [:new, :create, :delete]
+    resources "/projects", ProjectsController, only: [:index, :show]
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", YellrWeb do
   #   pipe_through :api

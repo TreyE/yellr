@@ -1,5 +1,5 @@
 defmodule DataTasks.CreateInitialBuildResult do
-  use Oban.Worker, queue: :git
+  use Oban.Worker, queue: :git, max_attempts: 3
 
   alias Yellr.Repo
   alias Yellr.Data.BuildResult

@@ -12,6 +12,11 @@ defmodule Yellr.Validators.CreateBranchRequest do
     field :monitored, :boolean, default: false
   end
 
+  def form_for_new_branch(project_id) do
+    %CreateBranchRequest{}
+    |> cast(%{project_id: project_id}, [:project_id])
+  end
+
   def new(attrs) do
     changeset(%CreateBranchRequest{}, attrs)
   end

@@ -1,0 +1,37 @@
+<div class="row">
+  <h1><%= @project.name %></h1>
+</div>
+<div class="row">
+  <dl>
+    <dt>Repository URL</dt>
+    <dd><%= @project.repository_url %></dd>
+  </dl>
+</div>
+<div class="row">
+  <h2>Branches</h2>
+</div>
+<div class="row">
+  <%= link("New Branch", to: Routes.branches_path(@conn, :new, project_id: @project.id), class: "btn btn-primary") %>
+</div>
+<%= if Enum.any?(@project.branches) do %>
+  <div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Branch Name</th>
+        <th>Monitored?</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for branch <- @project.branches do %>
+        <tr>
+          <td><%= branch.name %></td>
+          <td><%= branch.monitored %></td>
+          <td><%= link "Destroy", to: Routes.branches_path(@conn, :delete, branch.id), method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+<% end %>

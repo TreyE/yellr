@@ -1,0 +1,25 @@
+<h1>New Branch</h1>
+<div class="row">
+<div class="col-sm-12">
+<%= form_for @branch, Routes.branches_path(@conn, :create), [as: :branch], fn f -> %>
+<div class="form-group">
+  <%= label f, :name, "Name" %>
+  <%= text_input f, :name, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= label f, :initial_status, "Initial Status" %>
+  <%= select f, :initial_status, ["passing", "failing"], class: "form-control" %>
+</div>
+
+<div class="form-group">
+<%= label f, :monitored, class: "control-label" do %>
+  <%= checkbox f, :monitored %> Monitored?
+<% end %>
+</div>
+
+<%= hidden_input f, :project_id %>
+<%= submit "Submit", class: "btn btn-primary" %>
+<% end %>
+</div>
+</div>
