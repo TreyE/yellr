@@ -17,7 +17,7 @@ config :yellr, YellrWeb.Endpoint,
   render_errors: [view: YellrWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Yellr.PubSub, adapter: Phoenix.PubSub.PG2]
 
-config :yellr, Oban, repo: Yellr.Repo, crontab: false, queues: [git: 1]
+config :yellr, Oban, repo: Yellr.Repo, crontab: false, queues: [git: 1], max_attempts: 3
 
 # Configures Elixir's Logger
 config :logger, :console,

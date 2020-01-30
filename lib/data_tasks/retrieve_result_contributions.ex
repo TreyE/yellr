@@ -14,6 +14,9 @@ defmodule DataTasks.RetrieveResultContributions do
     client = GitData.client_for(build_result.branch.project.repository_url)
     {:ok, commit} = GitData.commit_information(client, build_result.sha)
     build_contribution_for(build_result, commit)
+    # It is  possible for all tasks after this to fail -
+    # if there has been a rebase.
+    # We need to wrap this in an error catcher.
     first_commit = get_last_contribution_for(build_result.branch.current_result_id)
     {:ok, commits} = GitData.commits_between(client, build_result.branch.name, first_commit.timestamp, commit.timestamp)
     Enum.each(commits, fn(c) ->
