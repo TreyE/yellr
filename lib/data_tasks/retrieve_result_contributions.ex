@@ -10,19 +10,25 @@ defmodule DataTasks.RetrieveResultContributions do
 
   @impl Oban.Worker
   def perform(%{"build_result_id" => build_result_id}, _job) do
-    build_result = Repo.one(query_build_result_by_id(build_result_id))
-    client = GitData.client_for(build_result.branch.project.repository_url)
-    {:ok, commit} = GitData.commit_information(client, build_result.sha)
-    build_contribution_for(build_result, commit)
-    # It is  possible for all tasks after this to fail -
-    # if there has been a rebase.
-    # We need to wrap this in an error catcher.
-    first_commit = get_last_contribution_for(build_result.branch.current_result_id)
-    {:ok, commits} = GitData.commits_between(client, build_result.branch.name, first_commit.timestamp, commit.timestamp)
-    Enum.each(commits, fn(c) ->
-      build_contribution_for(build_result, c)
+    Repo.transaction(fn() ->
+      build_result = Repo.one(query_build_result_by_id(build_result_id))
+      client = GitData.client_for(build_result.branch.project.repository_url)
+      {:ok, commit} = GitData.commit_information(client, build_result.sha)
+      build_contribution_for(build_result, commit)
+      # It is  possible for all tasks after this to fail -
+      # if there has been a rebase.
+      # We need to wrap this in an error catcher.
+      try do
+        first_commit = get_last_contribution_for(build_result.branch.current_result_id)
+        {:ok, commits} = GitData.commits_between(client, build_result.branch.name, first_commit.timestamp, commit.timestamp)
+        Enum.each(commits, fn(c) ->
+          build_contribution_for(build_result, c)
+        end)
+      rescue
+        _ -> :ok
+      end
+      set_as_current_build_result(build_result)
     end)
-    set_as_current_build_result(build_result)
   end
 
   defp query_build_result_by_id(br_id) do
