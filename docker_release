@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker-compose -f docker/release/docker-compose.yml run release_builder ./release
