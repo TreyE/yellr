@@ -4,4 +4,4 @@
   pushd _build/prod/rel && \
   zip -r yellr_release.zip yellr && \
   popd && \
-  cp _build/prod/rel/yellr.zip /home/elixir/test_results/
+  cp _build/prod/rel/yellr_release.zip /home/elixir/test_results/
