@@ -46,5 +46,14 @@ defmodule Yellr.Repo.Migrations.CreateInitialTables do
     end
 
     create index(:branches, [:current_result_id])
+
+    create table("accounts") do
+      add :username, :string, size: 255, null: false
+      add :encrypted_password, :string, size: 2048, null: false
+
+      timestamps()
+    end
+
+    create unique_index(:accounts, [:username], name: :unique_username)
   end
 end

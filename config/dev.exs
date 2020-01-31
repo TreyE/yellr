@@ -28,6 +28,10 @@ config :yellr, YellrWeb.Endpoint,
     ]
   ]
 
+config :yellr, Yellr.Authentication.Guardian,
+  issuer: "Yellr",
+  secret_key: "rqvGULwGescBTkL8sgigX+AxL4m992vlrkNy7QkO1bifWuFEGQuNWBPS3kx2IBBf"
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed

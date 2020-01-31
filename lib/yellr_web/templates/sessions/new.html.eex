@@ -1,0 +1,29 @@
+<h1>Log In</h1>
+
+<div class="row">
+<div class="col-sm-2">
+</div>
+<div class="col-sm-8">
+ <%= form_for @session, create_session_url(@conn), fn f -> %>
+
+  <%= error_tag @session, :base %>
+
+
+<div class="form-group">
+  <%= label f, :username %>
+  <%= text_input f, :username, class: "form-control" %>
+  <%= error_tag @session, :username %>
+</div>
+
+<div class="form-group">
+  <%= label f, :password %>
+  <%= password_input f, :password, class: "form-control" %>
+  <%= error_tag @session, :password %>
+</div>
+
+  <%= submit "Submit", class: "btn btn-primary" %>
+ <% end %>
+ </div>
+ <div class="col-sm-2">
+</div>
+ </div>

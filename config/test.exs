@@ -12,6 +12,10 @@ config :yellr, YellrWeb.Endpoint,
   http: [port: 4002],
   server: false
 
+  config :yellr, Yellr.Authentication.Guardian,
+  issuer: "Yellr",
+  secret_key: "rqvGULwGescBTkL8sgigX+AxL4m992vlrkNy7QkO1bifWuFEGQuNWBPS3kx2IBBf"
+
 config :yellr, Oban, repo: Yellr.Repo, crontab: false, queues: false, prune: :disabled
 
 # Print only warnings and errors during test

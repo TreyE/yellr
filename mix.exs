@@ -46,7 +46,9 @@ defmodule Yellr.MixProject do
       {:oban, "1.0.0"},
       {:tesla, "~> 1.3.0"},
       {:hackney, "~> 1.14.0"},
-      {:distillery, "~> 2.1"}
+      {:distillery, "~> 2.1"},
+      {:guardian, "~> 1.2.1"},
+      {:pbkdf2_elixir, "~> 1.0"}
     ]
   end
 

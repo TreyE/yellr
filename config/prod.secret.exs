@@ -5,7 +5,11 @@
 use Mix.Config
 
 config :yellr, YellrWeb.Endpoint,
-  secret_key_base: "PUT YOUR REAL SECRET KEY BASE HERE TO BUILD"
+  secret_key_base: "YOUR REAL KEY BASE HERE"
+
+config :yellr, Yellr.Authentication.Guardian,
+  issuer: "Yellr",
+  secret_key: "YOUR REAL JWT SECRET HERE"
 
 # ## Using releases (Elixir v1.9+)
 #

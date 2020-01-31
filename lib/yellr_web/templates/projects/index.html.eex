@@ -2,9 +2,6 @@
 <h1>Projects</h1>
 </div>
 <div class="row">
-<%= link "Add Project", to: "#" %>
-</div>
-<div class="row">
 <ul>
 <%= for project <- @projects do %>
 <li><%= link(project.name, to: Routes.projects_path(@conn, :show, project.id))%> - <%= project.repository_url%></li>

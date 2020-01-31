@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rm -f docker/release/yellr_release.zip
+docker-compose -f docker/release/docker-compose.yml build release_builder
+docker-compose -f docker/release/docker-compose.yml run release_builder ./release
