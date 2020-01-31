@@ -55,7 +55,7 @@ release :yellr do
     {:copy, "DEPLOYMENT.md", "DEPLOYMENT.md"}
   ]
   set commands: [
-    migrate: "rel/commands/migrate.sh"
+    migrate: "rel/commands/migrate"
   ]
 end
 

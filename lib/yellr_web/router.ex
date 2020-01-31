@@ -11,6 +11,7 @@ defmodule YellrWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug YellrWeb.ApiKeyPlug
   end
 
   scope "/", YellrWeb do

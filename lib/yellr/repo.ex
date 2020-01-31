@@ -19,7 +19,7 @@ defmodule Yellr.Repo do
     database_host = System.get_env("DATABASE_HOST") || raise "expected the DATABASE_HOST environment variable to be set"
     database_username = System.get_env("DATABASE_USER") || raise "expected the DATABASE_USER environment variable to be set"
     database_password = System.get_env("DATABASE_PASSWORD") || raise "expected the DATABASE_PASSWORD environment variable to be set"
-    database_name = System.get_env("DATABASE_NAME") || "edi_trader_prod"
+    database_name = System.get_env("DATABASE_NAME") || "yellr_prod"
     database_port = System.get_env("DATABASE_PORT") || 5432
     config
       |> Keyword.put(:username, database_username)

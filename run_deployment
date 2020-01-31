@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker-compose -f docker/deploy/docker-compose.yml run --service-ports yellr_server ./start_server

@@ -16,7 +16,8 @@ config :yellr, Yellr.Repo,
 # before starting your production server.
 config :yellr, YellrWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
-  load_from_system_env: true
+  load_from_system_env: true,
+  server: true
 
 
 # Do not print debug messages in production

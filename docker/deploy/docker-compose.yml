@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  yellr_server:
+    build:
+      context: "../../"
+      dockerfile: "docker/deploy/Dockerfile"
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+      - DATABASE_NAME=postgres
+      - PORT=8080
+      - API_KEY=DEPLOYMENT_TEST_API_KEY
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - 9000:8080
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=db
+    expose:
+      - 5432

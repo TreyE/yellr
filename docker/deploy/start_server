@@ -1,0 +1,4 @@
+#!/bin/sh
+
+./bin/yellr migrate
+./bin/yellr foreground

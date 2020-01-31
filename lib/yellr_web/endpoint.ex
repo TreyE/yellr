@@ -61,9 +61,10 @@ defmodule YellrWeb.Endpoint do
   end
 
   defp load_config_from_environment(config) do
-    port = System.get_env("PORT") || raise "expected the PORT environment variable to be set"
+    port = System.get_env("PORT") || "8080"
+    host = System.get_env("HOST") || "localhost"
     config
       |> Keyword.put(:http, [:inet6, port: port])
-      |> Keyword.put(:url, [host: "localhost", port: port])
+      |> Keyword.put(:url, [host: host, port: port])
   end
 end
