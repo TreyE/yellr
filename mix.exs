@@ -45,7 +45,8 @@ defmodule Yellr.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:oban, "1.0.0"},
       {:tesla, "~> 1.3.0"},
-      {:hackney, "~> 1.14.0"}
+      {:hackney, "~> 1.14.0"},
+      {:distillery, "~> 2.1"}
     ]
   end
 
