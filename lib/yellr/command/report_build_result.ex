@@ -18,8 +18,8 @@ defmodule Yellr.Command.ReportBuildResult do
     rbr = Ecto.Changeset.apply_changes(changeset)
     project = Repo.one(find_project_by_name(rbr.project))
     branch = Branches.find_branch_by_name_and_project_id(rbr.branch, project.id)
-    build_new_result_and_queue_task(rbr, branch)
-    {:ok, changeset}
+    br_record = build_new_result_and_queue_task(rbr, branch)
+    {:ok, br_record}
   end
 
   defp find_project_by_name(p_name) do
@@ -38,5 +38,6 @@ defmodule Yellr.Command.ReportBuildResult do
     )
     {:ok, br_record} = Repo.insert(br_cs)
     DataTasks.enqueue_result_contribution_lookup(br_record.id)
+    br_record
   end
 end

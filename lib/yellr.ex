@@ -38,4 +38,8 @@ defmodule Yellr do
   def broadcast_branch_updates() do
     YellrWeb.Channels.BranchUpdateChannel.broadcast_branches_updated()
   end
+
+  def report_result_from_params(params) do
+    Yellr.Command.ReportBuildResult.report_result_from_params(params)
+  end
 end

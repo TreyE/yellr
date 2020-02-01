@@ -26,6 +26,12 @@ defmodule YellrWeb.Router do
     plug YellrWeb.ApiKeyPlug
   end
 
+  scope "/api", YellrWeb.Api do
+    pipe_through :api
+
+    resources "/build_results", BuildResultsController, only: [:create]
+  end
+
   scope "/", YellrWeb do
     pipe_through :browser
 
