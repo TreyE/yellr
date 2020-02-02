@@ -1,10 +1,12 @@
 defmodule Yellr do
   @moduledoc """
-  Yellr keeps the contexts that define your domain
-  and business logic.
+  Root context for domain logic and data interaction.
 
-  Contexts are also responsible for managing your data, regardless
-  if it comes from the database, an external API or others.
+  If your code lives somewhere that isn't in the domain logic, you go through
+  this interface and it's functions.
+
+  If later this interface becomes too noisy, we'll examine other context
+  modules with limited interfaces, such as Yellr.Command.
   """
 
   def monitored_branches_with_results() do

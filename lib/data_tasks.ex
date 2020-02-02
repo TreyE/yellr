@@ -1,4 +1,14 @@
 defmodule DataTasks do
+  @moduledoc """
+  Queueing of async data tasks.
+
+  This is the context interface for the creation and enqueueing of all
+  asynchronous data tasks.  Currently, we run our tasks using Oban.
+  """
+
+  @doc """
+  Enqueue the lookup of contributions for a build result.
+  """
   def enqueue_result_contribution_lookup(build_result_id) do
     DataTasks.RetrieveResultContributions.new(
       %{"build_result_id" => build_result_id}
@@ -6,6 +16,9 @@ defmodule DataTasks do
     |> Oban.insert!
   end
 
+  @doc """
+  Enqueue the lookup of contributions for the first build result in a new branch.
+  """
   def enqueue_create_initial_build_result(branch_id, initial_status) do
     DataTasks.CreateInitialBuildResult.new(%{
       "branch_id" => branch_id,

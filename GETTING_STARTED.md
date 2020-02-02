@@ -9,8 +9,8 @@ If you want to skip all the installation and just get a sense of what is going o
 ./docker_testing_status_report
 ```
 
-You will find a zip file in docker/testing/development_status_report.zip.
-Inside of that file, open up 'doc/index.html' to begin exploring.
+You will find a zip file in `docker/testing/development_status_report.zip`.
+Inside of that file, open up `doc/index.html` to begin exploring.
 
 ## If you'd actually like to develop and and contribute code
 

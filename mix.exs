@@ -84,7 +84,62 @@ defmodule Yellr.MixProject do
       main: "development_status",
       extras: [
         "documentation/development_status.md",
-        "GETTING_STARTED.md"
+        "GETTING_STARTED.md",
+        "BUILDING_AND_RELEASING.md"
+      ],
+      nest_modules_by_prefix: [
+        Yellr.Authentication,
+        Yellr.Command,
+        Yellr.Data,
+        Yellr.Queries,
+        Yellr.Validators,
+        YellrWeb,
+        GitData
+      ],
+      groups_for_modules: [
+        "Root Contexts": [
+          Yellr,
+          GitData,
+          DataTasks
+        ],
+        "Commands": [
+          ~r"^Yellr\.Command\.",
+          ~r"^Yellr\.Validators\."
+        ],
+        "Controllers": [
+          ~r"^YellrWeb\.[A-Za-z]+Controller",
+          ~r"^YellrWeb\.Api\.[A-Za-z]+Controller",
+        ],
+        "Presentation": [
+          ~r"^YellrWeb\.[A-Za-z]+View",
+          ~r"^YellrWeb\.Api\.[A-Za-z]+View",
+          YellrWeb.ErrorHelpers,
+          YellrWeb.Gettext,
+          ~r"^YellrWeb\.ViewModels\."
+        ],
+        "Authentication": [
+          ~r"^Yellr\.Authentication\."
+        ],
+        "Persistence": [
+          Yellr.Repo,
+          ~r"^Yellr\.Data\.",
+          ~r"^Yellr\.Queries\."
+        ],
+        "External Data": [
+          ~r"^GitData"
+        ],
+        "HTTP Infrastructure": [
+          YellrWeb,
+          YellrWeb.ApiKeyPlug,
+          ~r"^YellrWeb\.Endpoint",
+          ~r"^YellrWeb\.Router",
+          ~r"^YellrWeb\.UserSocket",
+          ~r"^YellrWeb\.Channels"
+        ],
+        "Supervision and Application Infrastructure": [
+          Yellr.Application,
+          Yellr.ReleaseTasks
+        ]
       ]
     ]
   end

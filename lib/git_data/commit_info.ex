@@ -1,24 +1,33 @@
 defmodule GitData.CommitInfo do
+  @moduledoc """
+  Represents info about a specific commit.
+
+  Builds this data from a GitHub json payload.
+  """
+
   defstruct [:sha, :committer, :author, :timestamp]
 
   @type t :: %__MODULE__{
     sha: String.t,
     committer: String.t,
-    author: String.t | nil,
+    author: String.t,
     timestamp: DateTime.t
   }
 
+  @doc false
   def from_github_branch_data(json_hash) do
     commit_hash = Map.get(json_hash, "commit", %{})
     from_github_commit_data(commit_hash)
   end
 
+  @doc false
   def from_github_commit_list(json_array) do
     Enum.map(json_array, fn(item)  ->
       from_github_commit_data(item)
     end)
   end
 
+  @doc false
   def from_github_commit_data(commit_hash) do
     commit_data = Map.get(commit_hash, "commit", %{})
     sha = Map.fetch!(commit_hash, "sha")

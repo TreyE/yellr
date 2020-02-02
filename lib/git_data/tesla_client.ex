@@ -1,4 +1,6 @@
 defmodule GitData.TeslaClient do
+  @moduledoc false
+
   use Tesla
 
   plug Tesla.Middleware.BaseUrl, "https://api.github.com"
