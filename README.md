@@ -4,7 +4,7 @@ A CI tracker that yells at you.
 
 ## Developer Resources
 
-* [Getting Started](getting_started.html) - how to install dependencies and be ready to run
+* [Getting Started](getting_started) - how to install dependencies and be ready to run 
 * [Running Application](http://localhost:4000/) - once you've run `mix phx.server`
 
 ## Status
