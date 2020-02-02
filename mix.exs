@@ -81,9 +81,9 @@ defmodule Yellr.MixProject do
 
   defp docs do
     [
-      main: "README",
+      main: "development_status",
       extras: [
-        "README.md",
+        "documentation/development_status.md",
         "GETTING_STARTED.md"
       ]
     ]
