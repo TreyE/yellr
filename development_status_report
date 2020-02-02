@@ -1,0 +1,18 @@
+#!/bin/bash
+
+rm -rf development_status_report.zip
+rm -rf ./cover
+rm -rf ./credo
+rm -rf ./doc
+rm -rf ./test_reports/elixir/*.html
+rm -rf ./test-junit-report.xml
+
+MIX_ENV=test mix coveralls.html
+MIX_ENV=test mix coveralls.json
+mix credo report_card --format=html
+cd ./test_reports && yarn install && yarn run test-report
+cd ../
+
+mix docs
+
+zip -r development_status_report.zip credo cover doc test_reports/elixir

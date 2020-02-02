@@ -32,5 +32,15 @@ npm-debug.log
 # we ignore priv/static. You may want to comment
 # this depending on your deployment strategy.
 /priv/static/
-
+/doc/
+/credo/
+/test_reports/node_modules/
+test_reports/elixir/*.html
+test-junit-report.xml
 .elixir_ls
+development_status_report.zip
+
+yellr_release.zip
+yellr_release_for_docker.zip
+docker/release/yellr_release.zip
+docker/testing/development_status_report.zip

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+MIX_ENV=test mix ecto.create
+MIX_ENV=test mix ecto.migrate
+./development_status_report
+cp development_status_report.zip /home/elixir/test_results/

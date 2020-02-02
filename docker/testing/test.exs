@@ -3,7 +3,9 @@ use Mix.Config
 # Configure your database
 config :yellr, Yellr.Repo,
   database: "yellr_test",
-  hostname: "localhost",
+  username: "postgres",
+  password: "postgres",
+  hostname: "yellr_test_db",
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,

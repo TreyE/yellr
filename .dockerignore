@@ -1,3 +1,4 @@
+development_status_report.zip
 docker/testing/*.zip
 docker/release/*.zip
 build
@@ -11,8 +12,7 @@ credo
 log
 assets/node_modules
 test_reports/node_modules
+test_reports/elixir/*.html
 /*.csv
 raw_files
 /priv/static/assets/*
-feature_reports/node_modules
-feature_reports/feature_report.html

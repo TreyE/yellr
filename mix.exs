@@ -10,7 +10,14 @@ defmodule Yellr.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      docs: docs(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.json": :test,
+        "coveralls.html": :test
+      ],
     ]
   end
 
@@ -48,7 +55,13 @@ defmodule Yellr.MixProject do
       {:hackney, "~> 1.14.0"},
       {:distillery, "~> 2.1"},
       {:guardian, "~> 1.2.1"},
-      {:pbkdf2_elixir, "~> 1.0"}
+      {:pbkdf2_elixir, "~> 1.0"},
+      {:ex_doc, "~> 0.21"},
+      {:excoveralls, "~> 0.10", only: :test},
+      {:credo, "~> 1.1", only: :dev},
+      {:junit_formatter, "~> 3.0", only: [:test]},
+      {:credo_ex_coveralls_uncovered, git: "https://github.com/TreyE/credo_ex_coveralls_uncovered.git" , only: [:dev]},
+      {:credo_report_card, git: "https://github.com/TreyE/credo_report_card.git" , only: [:dev]}
     ]
   end
 
@@ -63,6 +76,16 @@ defmodule Yellr.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"]
+    ]
+  end
+
+  defp docs do
+    [
+      main: "README",
+      extras: [
+        "README.md",
+        "GETTING_STARTED.md"
+      ]
     ]
   end
 end

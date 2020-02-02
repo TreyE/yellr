@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+  yellr_test_runner:
+    build:
+      context: "../../"
+      dockerfile: "docker/testing/Dockerfile"
+    volumes:
+      - .:/home/elixir/test_results/
+    depends_on:
+      - yellr_test_db
+    links:
+      - yellr_test_db
+  yellr_test_db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=db
+    expose:
+      - 5432

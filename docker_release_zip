@@ -1,0 +1,7 @@
+#!/bin/sh
+
+rm -f ./yellr_release.zip
+rm -f ./yellr_release_for_docker.zip
+./docker_compile_release
+cp ./docker/release/yellr_release.zip ./
+zip yellr_release_for_docker.zip yellr_release.zip ./docker/deploy/* docker_run_release_server

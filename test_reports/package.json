@@ -1,0 +1,14 @@
+{
+  "name": "test_reports",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test-report" : "node xunit_viewer.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "xunit-viewer": "^5.1.10"
+  }
+}
