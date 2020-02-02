@@ -5,6 +5,7 @@ services:
     build:
       context: "../../"
       dockerfile: "docker/deploy/Dockerfile"
+    command: "/home/elixir/yellr/start_server"
     environment:
       - DATABASE_HOST=db
       - DATABASE_USER=postgres
