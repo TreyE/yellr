@@ -3,7 +3,7 @@ defmodule Yellr.Authentication.AuthenticationRequest do
   import Ecto.Changeset
   import Ecto.Query
 
-  schema "form_models.authenitcation_requests" do
+  schema "form_models.authentication_requests" do
     field :username, :string
     field :password, :string
   end
