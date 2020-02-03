@@ -19,19 +19,19 @@ defmodule Yellr do
   alias YellrWeb.Channels.BranchUpdateChannel
 
   @spec monitored_branches_with_results() ::
-    [Ecto.Schema.t(Yellr.Data.Branch)]
+    [Yellr.Data.Branch.t]
   def monitored_branches_with_results() do
     Queries.Branches.monitored_branches_with_results()
   end
 
   @spec project_list() ::
-    [Ecto.Schema.t(Yellr.Data.Project)]
+    [Yellr.Data.Project.t]
   def project_list() do
     Queries.Projects.project_list()
   end
 
   @spec project_by_id_with_branches(any()) ::
-    Ecto.Schema.t(Yellr.Data.Project) | nil
+    Yellr.Data.Project.t | nil
   def project_by_id_with_branches(project_id) do
     Queries.Projects.project_by_id_with_branches(project_id)
   end
@@ -43,23 +43,30 @@ defmodule Yellr do
   end
 
   @spec create_branch_from_params(map()) ::
-  {:ok, Branch.t()} |  {:error, Ecto.Changeset.t(CreateBranchRequest.t())}
+  {:ok, Yellr.Data.Branch.t()} |  {:error, Ecto.Changeset.t(Yellr.Validators.CreateBranchRequest.t())}
   def create_branch_from_params(params) do
     CreateBranch.create_branch_from_params(params)
   end
 
+  @spec destroy_branch_by_id(any()) ::
+    Yellr.Data.Branch.t() | no_return
   def destroy_branch_by_id(branch_id) do
     DestroyBranch.destroy_branch_by_id(branch_id)
   end
 
+  @spec toggle_monitor_by_id(any, any) ::
+    Yellr.Data.Branch.t() | no_return
   def toggle_monitor_by_id(branch_id, monitor_val) do
     ToggleBranchMonitor.toggle_monitor_by_id(branch_id, monitor_val)
   end
 
+  @spec broadcast_branch_updates :: :ok | {:error, any}
   def broadcast_branch_updates() do
     BranchUpdateChannel.broadcast_branches_updated()
   end
 
+  @spec report_result_from_params(map()) ::
+    {:ok, Yellr.Data.BuildResult.t} | {:error, Ecto.Changeset.t(Yellr.Validators.ReportedBuildResult.t)}
   def report_result_from_params(params) do
     ReportBuildResult.report_result_from_params(params)
   end

@@ -5,6 +5,8 @@ defmodule Yellr.Command.DestroyBranch do
   alias Yellr.Repo
 
   import Ecto.Query
+  @spec destroy_branch_by_id(any()) ::
+    Branch.t() | no_return
   def destroy_branch_by_id(branch_id) do
     record = Repo.get!(Branch, branch_id)
     Repo.transaction(fn() ->
