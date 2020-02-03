@@ -15,19 +15,24 @@ defmodule GitData.CommitInfo do
   }
 
   @doc false
+  @spec from_github_branch_data(map()) ::
+  t() | no_return
   def from_github_branch_data(json_hash) do
     commit_hash = Map.get(json_hash, "commit", %{})
     from_github_commit_data(commit_hash)
   end
 
   @doc false
+  @spec from_github_commit_list(list) ::
+    [t()] | no_return
   def from_github_commit_list(json_array) do
     Enum.map(json_array, fn(item)  ->
       from_github_commit_data(item)
     end)
   end
 
-  @doc false
+  @spec from_github_commit_data(map()) ::
+    t() | no_return
   def from_github_commit_data(commit_hash) do
     commit_data = Map.get(commit_hash, "commit", %{})
     sha = Map.fetch!(commit_hash, "sha")

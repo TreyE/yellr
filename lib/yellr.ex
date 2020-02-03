@@ -60,7 +60,7 @@ defmodule Yellr do
     ToggleBranchMonitor.toggle_monitor_by_id(branch_id, monitor_val)
   end
 
-  @spec broadcast_branch_updates :: :ok | {:error, any}
+  @spec broadcast_branch_updates() :: :ok | {:error, any}
   def broadcast_branch_updates() do
     BranchUpdateChannel.broadcast_branches_updated()
   end
