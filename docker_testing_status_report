@@ -1,4 +1,4 @@
 #!/bin/bash
 
 docker-compose -f docker/testing/docker-compose.yml build yellr_test_runner
-docker-compose -f docker/testing/docker-compose.yml run yellr_test_runner ./testing_status_report
+docker-compose -f docker/testing/docker-compose.yml run --rm yellr_test_runner ./testing_status_report

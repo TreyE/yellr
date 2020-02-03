@@ -66,5 +66,16 @@ defmodule YellrWeb.Endpoint do
     config
       |> Keyword.put(:http, [:inet6, port: port])
       |> Keyword.put(:url, [host: host, port: port])
+      |> Keyword.put(:x_api_key, get_api_key())
+  end
+
+  if (Mix.env == :prod) do
+    defp get_api_key do
+      System.get_env("API_KEY")
+    end
+  else
+    defp get_api_key do
+      "TESTKEY"
+    end
   end
 end

@@ -19,5 +19,9 @@ defmodule Yellr.Repo.Migrations.DefaultDataValues do
       "name" => "enroll_ma",
       "repository_url" => "https://github.com/health-connector/enroll.git"
     })
+    Yellr.Command.CreateProject.create_project_from_params(%{
+      "name" => "yellr",
+      "repository_url" => "https://github.com/TreyE/yellr.git"
+    })
   end
 end
