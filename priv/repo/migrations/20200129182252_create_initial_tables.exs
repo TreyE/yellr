@@ -6,7 +6,7 @@ defmodule Yellr.Repo.Migrations.CreateInitialTables do
       add :name, :string, size: 512, null: false
       add :repository_url, :string, size: 2048, null: false
 
-      timestamps([type: :utc_datetime_usec])
+      timestamps(type: :utc_datetime_usec)
     end
 
     create table(:branches) do
@@ -15,7 +15,7 @@ defmodule Yellr.Repo.Migrations.CreateInitialTables do
 
       add :project_id, references(:projects), null: false
 
-      timestamps([type: :utc_datetime_usec])
+      timestamps(type: :utc_datetime_usec)
     end
 
     create index(:branches, [:project_id])
@@ -26,7 +26,7 @@ defmodule Yellr.Repo.Migrations.CreateInitialTables do
       add :status, :string, size: 64, null: false, default: "passing"
       add :branch_id, references(:branches), null: false
 
-      timestamps([type: :utc_datetime_usec])
+      timestamps(type: :utc_datetime_usec)
     end
 
     create index(:build_results, [:branch_id])
@@ -38,7 +38,7 @@ defmodule Yellr.Repo.Migrations.CreateInitialTables do
       add :timestamp, :utc_datetime_usec, null: false
       add :build_result_id, references(:build_results), null: false
 
-      timestamps([type: :utc_datetime_usec])
+      timestamps(type: :utc_datetime_usec)
     end
 
     alter table(:branches) do

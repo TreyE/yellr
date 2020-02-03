@@ -3,17 +3,21 @@ defmodule Yellr.Authentication.AuthenticationRequest do
   import Ecto.Changeset
   import Ecto.Query
 
+  alias Yellr.Authentication.AuthenticationRequest
+  alias Yellr.Repo
+  alias Yellr.Data.Account
+
   schema "form_models.authentication_requests" do
     field :username, :string
     field :password, :string
   end
 
   def new() do
-    %Yellr.Authentication.AuthenticationRequest{}
+    %AuthenticationRequest{}
     |> cast(%{}, [])
   end
 
-  def changeset(%Yellr.Authentication.AuthenticationRequest{} = account, attrs) do
+  def changeset(%AuthenticationRequest{} = account, attrs) do
     account
     |> cast(attrs, [:username, :password])
     |> validate_required(:username)
@@ -25,10 +29,10 @@ defmodule Yellr.Authentication.AuthenticationRequest do
   def authorized_user(changeset) do
     username = get_change(changeset, :username)
     query = (
-      from a in Yellr.Data.Account,
+      from a in Account,
       where: a.username == ^username
     )
-    Yellr.Repo.one!(query)
+    Repo.one!(query)
   end
 
   defp downcase_username(changeset) do
@@ -47,10 +51,10 @@ defmodule Yellr.Authentication.AuthenticationRequest do
 
   defp validate_username_password(changeset, username, password) do
     query = (
-      from a in Yellr.Data.Account,
+      from a in Account,
       where: a.username == ^username
     )
-    found_user = Yellr.Repo.one(query)
+    found_user = Repo.one(query)
     case found_user do
       nil -> add_invalid_credentials_error(changeset)
       _ -> validate_password(changeset, found_user, password)

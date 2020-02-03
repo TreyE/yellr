@@ -6,11 +6,14 @@ defmodule DataTasks do
   asynchronous data tasks.  Currently, we run our tasks using Oban.
   """
 
+  alias DataTasks.RetrieveResultContributions
+  alias DataTasks.CreateInitialBuildResult
+
   @doc """
   Enqueue the lookup of contributions for a build result.
   """
   def enqueue_result_contribution_lookup(build_result_id) do
-    DataTasks.RetrieveResultContributions.new(
+    RetrieveResultContributions.new(
       %{"build_result_id" => build_result_id}
     )
     |> Oban.insert!
@@ -20,7 +23,7 @@ defmodule DataTasks do
   Enqueue the lookup of contributions for the first build result in a new branch.
   """
   def enqueue_create_initial_build_result(branch_id, initial_status) do
-    DataTasks.CreateInitialBuildResult.new(%{
+    CreateInitialBuildResult.new(%{
       "branch_id" => branch_id,
       "initial_status" => initial_status
     })

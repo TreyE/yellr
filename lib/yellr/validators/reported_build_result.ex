@@ -4,6 +4,7 @@ defmodule Yellr.Validators.ReportedBuildResult do
   import Ecto.Changeset
 
   alias Yellr.Validators.ReportedBuildResult
+  alias Yellr.Queries.Branches
 
   schema "validators.reported_build_result" do
     field :project, :string
@@ -39,7 +40,7 @@ defmodule Yellr.Validators.ReportedBuildResult do
   end
 
   defp check_branch_exists(changeset, project_name, branch_name) do
-    branch = Yellr.Queries.Branches.branch_by_name_and_project_name(branch_name, project_name)
+    branch = Branches.branch_by_name_and_project_name(branch_name, project_name)
     case branch do
       nil -> Ecto.Changeset.add_error(changeset, :branch, "does not exist")
       _ -> changeset

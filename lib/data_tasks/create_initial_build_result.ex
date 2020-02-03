@@ -4,6 +4,7 @@ defmodule DataTasks.CreateInitialBuildResult do
   use Oban.Worker, queue: :git, max_attempts: 3
 
   alias Yellr.Repo
+  alias Yellr.Data.Branch
   alias Yellr.Data.BuildResult
   alias Yellr.Data.Contribution
 
@@ -22,14 +23,14 @@ defmodule DataTasks.CreateInitialBuildResult do
   end
 
   defp find_branch_with_project_query(id) do
-    (from b in Yellr.Data.Branch,
+    (from b in Branch,
      where: b.id == ^id,
      preload: [:project]
     )
   end
 
   defp find_branch_query(id) do
-    (from b in Yellr.Data.Branch,
+    (from b in Branch,
      where: b.id == ^id
     )
   end

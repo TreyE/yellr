@@ -9,39 +9,48 @@ defmodule Yellr do
   modules with limited interfaces, such as Yellr.Command.
   """
 
+  alias Yellr.Queries
+  alias Yellr.Validators
+  alias Yellr.Command.CreateBranch
+  alias Yellr.Command.DestroyBranch
+  alias Yellr.Command.ToggleBranchMonitor
+  alias Yellr.Command.ReportBuildResult
+
+  alias YellrWeb.Channels.BranchUpdateChannel
+
   def monitored_branches_with_results() do
-    Yellr.Queries.Branches.monitored_branches_with_results()
+    Queries.Branches.monitored_branches_with_results()
   end
 
   def project_list() do
-    Yellr.Queries.Projects.project_list()
+    Queries.Projects.project_list()
   end
 
   def project_by_id_with_branches(project_id) do
-    Yellr.Queries.Projects.project_by_id_with_branches(project_id)
+    Queries.Projects.project_by_id_with_branches(project_id)
   end
 
   def form_for_new_branch(project_id) do
-    Yellr.Validators.CreateBranchRequest.form_for_new_branch(project_id)
+    Validators.CreateBranchRequest.form_for_new_branch(project_id)
   end
 
   def create_branch_from_params(params) do
-    Yellr.Command.CreateBranch.create_branch_from_params(params)
+    CreateBranch.create_branch_from_params(params)
   end
 
   def destroy_branch_by_id(branch_id) do
-    Yellr.Command.DestroyBranch.destroy_branch_by_id(branch_id)
+    DestroyBranch.destroy_branch_by_id(branch_id)
   end
 
   def toggle_monitor_by_id(branch_id, monitor_val) do
-    Yellr.Command.ToggleBranchMonitor.toggle_monitor_by_id(branch_id, monitor_val)
+    ToggleBranchMonitor.toggle_monitor_by_id(branch_id, monitor_val)
   end
 
   def broadcast_branch_updates() do
-    YellrWeb.Channels.BranchUpdateChannel.broadcast_branches_updated()
+    BranchUpdateChannel.broadcast_branches_updated()
   end
 
   def report_result_from_params(params) do
-    Yellr.Command.ReportBuildResult.report_result_from_params(params)
+    ReportBuildResult.report_result_from_params(params)
   end
 end

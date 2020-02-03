@@ -19,7 +19,6 @@ config :yellr, YellrWeb.Endpoint,
   load_from_system_env: true,
   server: true
 
-
 # Do not print debug messages in production
 config :logger, level: :info
 

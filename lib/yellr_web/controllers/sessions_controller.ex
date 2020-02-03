@@ -1,13 +1,15 @@
 defmodule YellrWeb.SessionsController do
   use YellrWeb, :controller
 
+  alias Yellr.Authentication.Accounts
+
   def new(conn, _) do
-    session = Yellr.Authentication.Accounts.new_session_changeset()
+    session = Accounts.new_session_changeset()
     render(conn, "new.html", session: session)
   end
 
   def create(conn, %{"authentication_request" => attrs}) do
-    session = Yellr.Authentication.Accounts.create_session_changeset(attrs)
+    session = Accounts.create_session_changeset(attrs)
     case session.valid? do
       false -> render(conn, "new.html", session: session)
       _ ->
@@ -19,7 +21,7 @@ defmodule YellrWeb.SessionsController do
 
   def destroy(conn, _) do
     conn
-    |> Yellr.Authentication.Accounts.perform_logout()
+    |> Accounts.perform_logout()
     |> redirect(to: Routes.sessions_path(conn, :new))
   end
 

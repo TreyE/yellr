@@ -28,8 +28,8 @@
       # Load and configure plugins here:
       #
       plugins: [
-        {CredoExCoverallsUncovered,[]},
-        {CredoReportCard,[]}
+        {CredoExCoverallsUncovered, []},
+        {CredoReportCard, []}
       ],
       #
       # If you create your own checks, you must specify the source files for
