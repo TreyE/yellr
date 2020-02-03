@@ -4,6 +4,8 @@ defmodule Yellr.Command.CreateBranch do
 
   alias Yellr.Validators.CreateBranchRequest
 
+  @spec create_branch_from_params(map()) ::
+     {:ok, Branch.t()} |  {:error, Ecto.Changeset.t(CreateBranchRequest.t())}
   def create_branch_from_params(params) do
     cs = CreateBranchRequest.new(params)
     case cs.valid? do
