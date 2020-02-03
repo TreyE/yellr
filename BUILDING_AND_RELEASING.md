@@ -15,4 +15,4 @@ There are a variety of commands available to create release packages:
 
 ## Deployment Commands
 
-There is really only one concrete deployment command, `docker_run_release_server`.  It is copied into the release zip file for a docker deployment.
+There is really only one concrete deployment command, `docker_run_release_server`.  It is copied into the release zip file for a docker deployment.  You will want to edit the `docker/deploy/docker-compose.yml` file, in order to set the `API_KEY` setting that will be used to report build resuts by CI tools.
