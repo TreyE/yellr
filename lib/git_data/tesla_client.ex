@@ -16,7 +16,6 @@ defmodule GitData.TeslaClient do
       "/commits/" <>
       sha
       )
-    IO.inspect(result)
     case result do
       {:ok, resp} ->
         {:ok, GitData.CommitInfo.from_github_commit_data(resp.body)}
