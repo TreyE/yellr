@@ -18,4 +18,4 @@ script:
   - mix test
 
 after_script:
-  - echo "{'project':'yellr','branch':'$TRAVIS_BRANCH','sha':'$TRAVIS_COMMIT','status':'$TEST_RESULT_VALUE'}"
+  - if [[ "$TRAVIS_TEST_RESULT" == "0" ]]; then echo "{'project':'yellr','branch':'$TRAVIS_BRANCH','sha':'$TRAVIS_COMMIT','status':'passing'}"; else echo "{'project':'yellr','branch':'$TRAVIS_BRANCH','sha':'$TRAVIS_COMMIT','status':'failing'}"; fi
