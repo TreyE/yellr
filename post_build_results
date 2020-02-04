@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
 build_result_val=1
+
 if [[ "$TRAVIS_TEST_RESULT" == "0" ]]; then
   build_result_val="passing"
 else
