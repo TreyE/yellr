@@ -18,4 +18,4 @@ script:
   - mix test
 
 after_script:
-  - ./report_build_result
+  - ./post_build_results
