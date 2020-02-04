@@ -15,4 +15,4 @@ before_script:
   - MIX_ENV=test mix ecto.migrate
 
 script:
-  - mix coveralls.travis
+  - mix test
