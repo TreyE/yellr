@@ -16,7 +16,8 @@ defmodule Yellr.MixProject do
       preferred_cli_env: [
         coveralls: :test,
         "coveralls.json": :test,
-        "coveralls.html": :test
+        "coveralls.html": :test,
+        "coveralls.travis": :test
       ],
     ]
   end
