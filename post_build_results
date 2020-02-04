@@ -1,0 +1,10 @@
+#!/bin/sh
+
+build_result_val=1
+if [[ "$TRAVIS_TEST_RESULT" == "0" ]]; then
+  build_result_val="passing"
+else
+  build_result_val="failing"
+fi
+
+echo "{'project':'yellr','branch':'$TRAVIS_BRANCH','sha':'$TRAVIS_COMMIT','status':'$build_result_val'}"
