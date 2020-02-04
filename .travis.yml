@@ -16,3 +16,6 @@ before_script:
 
 script:
   - mix test
+
+after_script:
+  - echo "{'project':'yellr','branch':'$TRAVIS_BRANCH','sha':'$TRAVIS_COMMIT','status':'$TEST_RESULT_VALUE'}"
