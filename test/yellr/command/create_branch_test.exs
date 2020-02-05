@@ -35,7 +35,7 @@ defmodule Yellr.Command.CreateBranchTest do
     YellrMocks.Commands.CreateBranchDataTaskMock.setup()
     YellrMocks.Commands.CreateBranchDataTaskMock.allow(
       :enqueue_create_initial_build_result,
-      :any_args,
+      fn([_,"passing"]) -> true end,
       :ok
     )
     project = build_project(@project_name)
