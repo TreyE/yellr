@@ -21,7 +21,7 @@ before_script:
   - MIX_ENV=test mix ecto.migrate
 
 script:
-  - mix test
+  - nvm use 12 && mix test
 
 after_script:
   - ./post_build_results
