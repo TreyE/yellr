@@ -62,7 +62,8 @@ defmodule Yellr.MixProject do
       {:credo, "~> 1.1", only: :dev},
       {:junit_formatter, "~> 3.0", only: [:test]},
       {:credo_ex_coveralls_uncovered, git: "https://github.com/TreyE/credo_ex_coveralls_uncovered.git" , only: [:dev]},
-      {:credo_report_card, git: "https://github.com/TreyE/credo_report_card.git" , only: [:dev]}
+      {:credo_report_card, git: "https://github.com/TreyE/credo_report_card.git" , only: [:dev]},
+      {:module_mocker, git: "https://github.com/TreyE/module_mocker.git", only: [:test]}
     ]
   end
 
