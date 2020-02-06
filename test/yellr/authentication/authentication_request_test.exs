@@ -39,7 +39,7 @@ defmodule Yellr.Authentication.AuthenticationRequestTest do
       }
     )
     false = changeset.valid?
-    {"invalid credentials dude", _} = Keyword.fetch!(changeset.errors, :base)
+    {"invalid credentials", _} = Keyword.fetch!(changeset.errors, :base)
   end
 
   defp build_user(username) do

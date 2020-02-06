@@ -8,4 +8,4 @@ else
   build_result_val="failing"
 fi
 
-curl -H "Content-Type: application/json" -H "X-API-Key: ${BUILD_REPORT_API_KEY}" -X POST -d "{'project':'yellr','branch':'$TRAVIS_BRANCH','sha':'$TRAVIS_COMMIT','status':'$build_result_val'}" ${BUILD_REPORT_URL}
+curl -H "Content-Type: application/json" -H "X-API-Key: ${BUILD_REPORT_API_KEY}" -X POST ${BUILD_REPORT_URL} -d '{"project":"yellr","branch":"${TRAVIS_BRANCH}","sha":"${TRAVIS_COMMIT}","status":"${build_result_val}"}'
