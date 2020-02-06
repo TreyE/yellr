@@ -1,0 +1,14 @@
+#!/bin/sh
+
+image_host="SET YOUR HOST HERE"
+tag=`git rev-parse HEAD`
+tag_name=yellr_deploy:deploy_${tag}
+compose_file_string=`cat docker/deploy_image/docker-compose.yml`
+image_name=${image_host}/${tag_name}
+
+rm -rf ./docker_releases
+mkdir docker_releases
+# ./docker_compile_release && cp docker/release/yellr_release.zip ./ &&
+docker build -f docker/deploy/Dockerfile -t ${tag_name} . && docker tag ${tag_name} ${image_name} && docker push ${image_name}
+mkdir docker_releases/${tag}
+echo "${compose_file_string/SUBSTITUTE_RELEASE_IMAGE_NAME_HERE/$image_name}" > docker_releases/${tag}/docker-compose.yml

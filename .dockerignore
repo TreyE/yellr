@@ -1,6 +1,7 @@
 development_status_report.zip
 docker/testing/*.zip
 docker/release/*.zip
+docker_releases
 build
 _build
 deps

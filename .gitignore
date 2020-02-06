@@ -44,3 +44,6 @@ yellr_release.zip
 yellr_release_for_docker.zip
 docker/release/yellr_release.zip
 docker/testing/development_status_report.zip
+docker_releases
+
+*.swp

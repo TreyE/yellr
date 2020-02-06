@@ -9,9 +9,10 @@ Before doing any builds, for production or otherwise, make sure to edit the `con
 ## Build and Release Commands
 
 There are a variety of commands available to create release packages:
-1. `docker_release_zip` - Build a zip package that also contains a script to run the application, and it's database, as a docker composed service.  It comes with a script, called `docker_run_release_server` that will compose for you.  If you want  to play with the deployment settings check out the compose and docker files in the zip's `docker/deploy` directory.
-2. `docker_compile_release` - Cross-compile a stand-alone zip for CentOS7 that you can deploy on your own CentOS7 server.  Contains the application and a file describing how to configure the environment, database, and the environment variables you care about.  Use this when you don't want to deploy to a docker instance, but run it on your own CentOS7 server and host your own database.
-3. `compile_release` - Build a release into the '_build' directory.  **This release will be targeted to the machine on which you did the building**.  You should really only use this to see if you can run the server locally and for release debugging.
+1. `docker_build_release_image` - Build a release image and push it up, then generate the corresponding compose file.  **Make sure** to edit this file to have the correct host name (i.e. your account) before you run this.  You will then find the compose file in  `docker_releases/<GIT_COMMIT_SHA>/docker-compose.yml`.
+2. `docker_release_zip` - Build a zip package that also contains a script to run the application, and it's database, as a docker composed service.  It comes with a script, called `docker_run_release_server` that will compose for you.  If you want  to play with the deployment settings check out the compose and docker files in the zip's `docker/deploy` directory.
+3. `docker_compile_release` - Cross-compile a stand-alone zip for CentOS7 that you can deploy on your own CentOS7 server.  Contains the application and a file describing how to configure the environment, database, and the environment variables you care about.  Use this when you don't want to deploy to a docker instance, but run it on your own CentOS7 server and host your own database.
+4. `compile_release` - Build a release into the '_build' directory.  **This release will be targeted to the machine on which you did the building**.  You should really only use this to see if you can run the server locally and for release debugging.
 
 ## Deployment Commands
 
