@@ -17,7 +17,6 @@
 
 <%= if broken_builds(@branches) do %>
   <audio autoplay preload>
-    <source src="<%= Routes.static_path(@conn, "/media/willhelm.mp3") %>" type="audio/mpeg">
     <source src="<%= Routes.static_path(@conn, "/media/willhelm.wav") %>" type="audio/wav">
     Your browser does not support audio elements.
   </audio>
