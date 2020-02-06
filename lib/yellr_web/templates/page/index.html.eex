@@ -2,9 +2,9 @@
 <%= for branch <- @branches do %>
   <div class="card <%= branch_status_class(branch) %> floatcard">
     <div class="card-body">
-      <h3 class="card-title"><%= branch.project %></h3>
-      <h4 class="card-title"><%= branch.branch %></h4>
-      <h4 class="card-title"><%= build_time(branch) %></h4>
+      <h1 class="card-title"><%= branch.project %></h1>
+      <h3 class="card-title"><%= branch.branch %></h3>
+      <h3 class="card-title"><%= build_time(branch) %></h3>
       <%= unless branch.passing do %>
       <div class="card-text">
       <p class="lead"><%= contributor_list(branch) %></p>
@@ -18,6 +18,8 @@
 <%= if broken_builds(@branches) do %>
   <audio autoplay preload>
     <source src="<%= Routes.static_path(@conn, "/media/willhelm.mp3") %>" type="audio/mpeg">
+    <source src="<%= Routes.static_path(@conn, "/media/willhelm.wav") %>" type="audio/wav">
+    Your browser does not support audio elements.
   </audio>
 <% end %>
 
