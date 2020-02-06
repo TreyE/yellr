@@ -1,6 +1,6 @@
 #!/bin/sh
 
-image_host="PUT YOUR HOSTING ACCOUNT NAME HERE"
+image_host="treyedocker"
 tag=`git rev-parse HEAD`
 tag_name=yellr_deploy:deploy_${tag}
 compose_file_string=`cat docker/deploy_image/docker-compose.yml`
@@ -8,9 +8,10 @@ image_name=${image_host}/${tag_name}
 
 echo "Git build SHA will be ${tag}"
 echo "Local image tag will be called ${tag_name}"
-echo "Built image  will be pushed as ${image_name}"
+echo "Built image will be pushed as ${image_name}"
 echo "You will find the compose file at: docker_releases/${tag}/docker-compose.yml"
 
+rm -rf ./yellr_release.zip
 rm -rf ./docker_releases
 mkdir docker_releases
 
