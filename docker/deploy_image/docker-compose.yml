@@ -9,6 +9,7 @@ services:
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=postgres
       - DATABASE_NAME=postgres
+      - HOST=localhost
       - PORT=8080
       - API_KEY=DEPLOYMENT_TEST_API_KEY
     depends_on:
