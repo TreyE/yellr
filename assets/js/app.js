@@ -12,6 +12,7 @@ import css from "../css/app.css"
 import "phoenix_html"
 
 import "./build_change"
+import "./yell_on_load"
 
 // Import local files
 //
