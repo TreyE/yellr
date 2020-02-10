@@ -8,6 +8,10 @@ defmodule Yellr.Data.BuildResult do
   alias Yellr.Data.Branch
   alias Yellr.Data.Contribution
 
+  @type t :: %__MODULE__{
+
+  }
+
   schema "build_results" do
     field :sha, :string
     field :status, :string, default: "passing"

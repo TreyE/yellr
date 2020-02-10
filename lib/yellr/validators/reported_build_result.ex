@@ -6,6 +6,10 @@ defmodule Yellr.Validators.ReportedBuildResult do
   alias Yellr.Validators.ReportedBuildResult
   alias Yellr.Queries.Branches
 
+  @type t :: %__MODULE__{
+
+  }
+
   schema "validators.reported_build_result" do
     field :project, :string
     field :branch, :string

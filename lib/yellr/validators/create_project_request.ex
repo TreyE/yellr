@@ -5,6 +5,10 @@ defmodule Yellr.Validators.CreateProjectRequest do
 
   alias Yellr.Validators.CreateProjectRequest
 
+  @type t :: %__MODULE__{
+
+  }
+
   schema "validators.create_project_request" do
     field :name, :string
     field :repository_url, :string

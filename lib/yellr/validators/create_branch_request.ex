@@ -5,6 +5,10 @@ defmodule Yellr.Validators.CreateBranchRequest do
 
   alias Yellr.Validators.CreateBranchRequest
 
+  @type t :: %__MODULE__{
+
+  }
+
   schema "validators.create_branch_request" do
     field :name, :string
     field :project_id, :string

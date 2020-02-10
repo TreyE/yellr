@@ -7,7 +7,7 @@ defmodule Yellr.Command.ReportBuildResult do
   import Ecto.Query
 
   @spec report_result_from_params(map()) ::
-    {:ok, BuildResult.t} | {:error, Ecto.Changeset.t(Ecto.Changeset.t(ReportedBuildResult.t))}
+    {:ok, BuildResult.t} | {:error, Ecto.Changeset.t(ReportedBuildResult.t)}
   def report_result_from_params(params) do
     changeset = ReportedBuildResult.new(params)
     case changeset.valid? do

@@ -7,6 +7,10 @@ defmodule Yellr.Data.Project do
   alias Yellr.Data.Project
   alias Yellr.Data.Branch
 
+  @type t :: %__MODULE__{
+
+  }
+
   schema "projects" do
     field :name, :string
     field :repository_url, :string

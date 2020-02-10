@@ -8,6 +8,10 @@ defmodule Yellr.Data.Branch do
   alias Yellr.Data.Project
   alias Yellr.Data.BuildResult
 
+  @type t :: %__MODULE__{
+
+  }
+
   schema "branches" do
     field :name, :string
     field :monitored, :boolean, default: false
