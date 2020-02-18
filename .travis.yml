@@ -26,5 +26,7 @@ script:
 
 after_script:
   - ./travis/post_build_results
+
+after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - ./travis/docker_build_release_image
