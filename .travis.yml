@@ -24,4 +24,4 @@ script:
   - nvm use 12 && mix test
 
 after_script:
-  - ./post_build_results
+  - ./travis/post_build_results
