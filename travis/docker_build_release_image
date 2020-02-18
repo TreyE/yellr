@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 image_host="${DOCKERHUB_HOST_ACCOUNT}"
 tag=`git rev-parse HEAD`
