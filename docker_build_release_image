@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 image_host="treyedocker"
 tag=`git rev-parse HEAD`
