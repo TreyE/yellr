@@ -12,6 +12,7 @@ defmodule Yellr.Queries.Branches do
       where: b.monitored == true,
       join: cr in BuildResult,
       on: cr.id == b.current_result_id,
+      order_by: cr.inserted_at,
       preload: [:project, [current_result: [:contributions]]]
     )
     Repo.all(query)
