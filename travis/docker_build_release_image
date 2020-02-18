@@ -24,7 +24,6 @@ set -x
   docker build -f docker/deploy/Dockerfile -t ${tag_name} . && \
   docker tag ${tag_name} ${image_name} && \
   docker push ${image_name}
-set +x
 
 echo "${compose_file_string/SUBSTITUTE_RELEASE_IMAGE_NAME_HERE/$image_name}" > docker_releases/docker-compose.yml.1
 compose_host_file_string=`cat docker_releases/docker-compose.yml.1`
