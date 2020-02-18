@@ -9,7 +9,7 @@ image_name=${image_host}/${tag_name}
 echo "Git build SHA will be ${tag}"
 echo "Local image tag will be called ${tag_name}"
 echo "Built image will be pushed as ${image_name}"
-echo "You will find the compose file at: docker_releases/${tag}/docker-compose.yml"
+echo "You will find the compose file at: docker_releases/docker-compose.yml"
 
 rm -rf ./yellr_release.zip
 rm -rf ./docker_releases
