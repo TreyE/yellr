@@ -29,5 +29,8 @@ after_failure:
 
 after_success:
   - ./travis/post_build_results
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - ./travis/docker_build_release_image
+  - |
+    if [[ $TRAVIS_PULL_REQUEST == “false” ]] && [[ $TRAVIS_BRANCH == “master” ]]; then
+      echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      ./travis/docker_build_release_image
+    fi
