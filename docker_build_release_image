@@ -1,6 +1,6 @@
 #!/bin/sh
 
-image_host="PUT YOUR IMAGE HOST HERE"
+image_host="treyedocker"
 tag=`git rev-parse HEAD`
 tag_name=yellr_deploy:deploy_${tag}
 compose_file_string=`cat docker/deploy_image/docker-compose.yml`

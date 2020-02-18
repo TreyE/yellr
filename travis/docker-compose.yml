@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+  release_builder:
+    build:
+      context: "../../"
+      dockerfile: "docker/release/Dockerfile"
+    volumes:
+      - .:/home/elixir/test_results/
+    environment:
+      - HTTP_SECRET_KEY_BASE
+      - JWT_SECRET_KEY

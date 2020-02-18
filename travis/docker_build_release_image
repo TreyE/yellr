@@ -16,6 +16,7 @@ rm -rf ./docker_releases
 mkdir docker_releases
 
 cp -f ./config/prod.secret.travis.exs ./config/prod.secret.exs
+cp -f ./travis/docker-compose.yml ./docker/release/docker-compose.yml
 
 set -x
 ./docker_compile_release && \
