@@ -70,3 +70,9 @@ deploy:
     wait_until_deployed: true
     on:
       branch: master
+
+env:
+  - ELIXIR_VERSION=1.9.1
+  - LANG=en_US.UTF-8
+  - LANGUAGE=en_US:en
+  - LC_ALL=en_US.UTF-8
