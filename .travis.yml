@@ -7,6 +7,12 @@ node_js:
 otp_release:
   - 21.0
 
+env:
+  global:
+    - LANG=en_US.UTF-8
+    - LANGUAGE=en_US:en
+    - LC_ALL=en_US.UTF-8
+
 services:
   - postgresql
   - docker
@@ -70,9 +76,3 @@ deploy:
     wait_until_deployed: true
     on:
       branch: master
-
-env:
-  - ELIXIR_VERSION=1.9.1
-  - LANG=en_US.UTF-8
-  - LANGUAGE=en_US:en
-  - LC_ALL=en_US.UTF-8
