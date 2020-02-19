@@ -34,8 +34,21 @@ after_success:
       echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       ./travis/docker_build_release_image
     fi
+  - |
+    if [[ $TRAVIS_PULL_REQUEST == “false” ]] && [[ $TRAVIS_BRANCH == “master” ]]; then
+      ./travis_development_status_report
+    fi
 
 deploy:
+  - provider: s3
+    bucket: "ic-yellr"
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    region: us-east-1
+    skip_cleanup: true
+    local_dir: travis_development_status_reports
+    on:
+      branch: master
   - provider: s3
     bucket: "ideacrew-com"
     access_key_id: $AWS_ACCESS_KEY

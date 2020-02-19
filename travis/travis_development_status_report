@@ -1,0 +1,8 @@
+#!/bin/bash
+
+rm -rf ./travis_development_status_reports
+mkdir ./travis_development_status_reports
+
+./development_status_report
+
+unzip development_status_report.zip -d ./travis_development_status_reports

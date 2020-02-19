@@ -1,4 +1,6 @@
 #!/bin/bash
 
+rm -f ./docker/testing/development_status_report.zip
+
 docker-compose -f docker/testing/docker-compose.yml build yellr_test_runner
 docker-compose -f docker/testing/docker-compose.yml run --rm yellr_test_runner ./testing_status_report
