@@ -29,3 +29,11 @@ set +x
 echo "${compose_file_string/SUBSTITUTE_RELEASE_IMAGE_NAME_HERE/$image_name}" > docker_releases/docker-compose.yml.1
 compose_host_file_string=`cat ./docker_releases/docker-compose.yml.1`
 echo "${compose_host_file_string/SUBSTITUTE_DEPLOY_HOST_NAME_HERE/$TRAVIS_DEPLOY_HOSTNAME}" > docker_releases/docker-compose.yml
+
+deploy_file_string=`cat ./travis/deploy`
+echo "${deploy_file_string/SUBSTITUTE_RELEASE_IMAGE_NAME_HERE/$image_name}" > docker_releases/deploy
+chmod u+x echo ./docker_releases/deploy
+
+cp ./travis/appspec.yml ./docker_releases/
+
+pushd docker_release && zip yellr.zip deploy docker-compose.yml appspec.yml && popd

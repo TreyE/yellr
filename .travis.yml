@@ -34,3 +34,25 @@ after_success:
       echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       ./travis/docker_build_release_image
     fi
+
+addons:
+  artifacts:
+    enabled: true
+    s3_region: us-east-1
+    working_dir: docker_releases
+    paths:
+      - yellr.zip
+
+deploy:
+  provider: codedeploy
+  bucket: "ideacrew-com"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  key: yellr.zip
+  bundle_type: zip
+  application: yellr
+  deployment_group: yellr-tx
+  region: us-east-1
+  wait_until_deployed: true
+  on:
+    branch: master
