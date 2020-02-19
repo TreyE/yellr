@@ -13,7 +13,9 @@ echo "You will find the compose file at: docker_releases/docker-compose.yml"
 
 rm -rf ./yellr_release.zip
 rm -rf ./docker_releases
+rm -rf ./codedeploy_releases
 mkdir docker_releases
+mkdir codedeploy_releases
 
 cp -f ./config/prod.secret.travis.exs ./config/prod.secret.exs
 cp -f ./travis/docker-compose.yml ./docker/release/docker-compose.yml
@@ -36,4 +38,5 @@ chmod u+x ./docker_releases/deploy
 
 cp ./travis/appspec.yml ./docker_releases/
 
-pushd docker_release && zip yellr.zip deploy docker-compose.yml appspec.yml && popd
+pushd docker_releases && zip yellr.zip deploy docker-compose.yml appspec.yml && popd
+cp -f ./docker_releases/yellr.zip ./codedeploy_releases/
