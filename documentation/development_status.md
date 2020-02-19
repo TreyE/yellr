@@ -1,4 +1,5 @@
 # Yellr
+[![Build Status](https://travis-ci.com/TreyE/yellr.svg?branch=master)](https://travis-ci.com/TreyE/yellr)
 
 A CI tracker that yells at you.
 
