@@ -53,6 +53,7 @@ deploy:
     region: us-east-1
     skip_cleanup: true
     local_dir: travis_development_status_reports
+    default_text_charset: 'utf-8'
     on:
       branch: master
   - provider: s3
