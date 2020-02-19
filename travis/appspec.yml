@@ -5,7 +5,7 @@ files:
     destination: /home/ubuntu/scripts
 permissions:
   - object: /home/ubuntu/scripts
-    pattern: deploy
+    pattern: "deploy"
     mode: 755
 hooks:
 # During the ApplicationStart deployment lifecycle event, run the commands
