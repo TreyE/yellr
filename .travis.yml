@@ -31,12 +31,12 @@ after_success:
   - ./travis/post_build_results
   - |
     if [[ $TRAVIS_PULL_REQUEST == “false” ]] && [[ $TRAVIS_BRANCH == “master” ]]; then
-      echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      ./travis/docker_build_release_image
+      ./travis/travis_development_status_report
     fi
   - |
     if [[ $TRAVIS_PULL_REQUEST == “false” ]] && [[ $TRAVIS_BRANCH == “master” ]]; then
-      ./travis_development_status_report
+      echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      ./travis/docker_build_release_image
     fi
 
 deploy:
