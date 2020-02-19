@@ -1,8 +1,10 @@
 # Yellr
 
+[![Build Status](https://travis-ci.com/TreyE/yellr.svg?branch=master)](https://travis-ci.com/TreyE/yellr)
+
 A CI tracker that yells at you.
 
-[You can find the most recently released version's documents here.](http://ic-yellr.s3-website-us-east-1.amazonaws.com/doc/)
+[Docs for the most recent release are here.](http://ic-yellr.s3-website-us-east-1.amazonaws.com/doc/)
 
 ## Developer Resources
 
