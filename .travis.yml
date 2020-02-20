@@ -28,7 +28,7 @@ before_script:
   - MIX_ENV=test mix ecto.migrate
 
 script:
-  - nvm use 12 && mix test
+  - nvm use 12 && mix coveralls.travis
 
 after_failure:
   - ./travis/post_build_results
