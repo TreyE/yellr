@@ -1,5 +1,6 @@
 # Yellr
 [![Build Status](https://travis-ci.com/TreyE/yellr.svg?branch=master)](https://travis-ci.com/TreyE/yellr)
+[![Coverage Status](https://coveralls.io/repos/github/TreyE/yellr/badge.svg?branch=master)](https://coveralls.io/github/TreyE/yellr?branch=master)
 
 A CI tracker that yells at you.
 
