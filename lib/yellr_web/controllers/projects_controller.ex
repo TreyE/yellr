@@ -14,6 +14,19 @@ defmodule YellrWeb.ProjectsController do
     end
   end
 
+  def edit(conn, %{"id" => project_id}) do
+    project = Yellr.get_editable_project(project_id)
+    render(conn, "edit.html", %{form: project, id: project_id})
+  end
+
+  def update(conn, %{"project" => params, "id" => project_id}) do
+    result = Yellr.update_project_from_params(project_id, params)
+    case result do
+      {:error, cs} -> render(conn, "edit.html", %{form: cs, id: project_id})
+      {:ok, record} -> redirect(conn, to: YellrWeb.Router.Helpers.projects_path(conn, :show, record.id))
+    end
+  end
+
   def index(conn, _params) do
     projects = Yellr.project_list()
     render(conn, "index.html", %{projects: projects})

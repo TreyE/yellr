@@ -45,7 +45,7 @@ defmodule YellrWeb.Router do
     delete "/sessions", SessionsController, :destroy
 
     resources "/branches", BranchesController, only: [:new, :create, :delete, :update]
-    resources "/projects", ProjectsController, only: [:index, :show, :new, :create]
+    resources "/projects", ProjectsController, except: [:delete]
   end
 
   # Other scopes may use custom stacks.

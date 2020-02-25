@@ -78,4 +78,12 @@ defmodule Yellr do
   def create_project_from_params(params) do
     Yellr.Command.CreateProject.create_project_from_params(params)
   end
+
+  def get_editable_project(id) do
+    Yellr.Command.UpdateProject.get_editable_project(id)
+  end
+
+  def update_project_from_params(id, params) do
+    Yellr.Command.UpdateProject.update_project_from_params(id, params)
+  end
 end
