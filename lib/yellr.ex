@@ -70,4 +70,12 @@ defmodule Yellr do
   def report_result_from_params(params) do
     ReportBuildResult.report_result_from_params(params)
   end
+
+  def new_project_creation_request() do
+    Yellr.Validators.CreateProjectRequest.blank()
+  end
+
+  def create_project_from_params(params) do
+    Yellr.Command.CreateProject.create_project_from_params(params)
+  end
 end

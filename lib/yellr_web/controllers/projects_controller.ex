@@ -1,6 +1,19 @@
 defmodule YellrWeb.ProjectsController do
   use YellrWeb, :controller
 
+  def new(conn, _params) do
+    project = Yellr.new_project_creation_request()
+    render(conn, "new.html", %{form: project})
+  end
+
+  def create(conn, %{"project" => params}) do
+    result = Yellr.create_project_from_params(params)
+    case result do
+      {:error, cs} -> render(conn, "new.html", %{form: cs})
+      {:ok, record} -> redirect(conn, to: YellrWeb.Router.Helpers.projects_path(conn, :show, record.id))
+    end
+  end
+
   def index(conn, _params) do
     projects = Yellr.project_list()
     render(conn, "index.html", %{projects: projects})

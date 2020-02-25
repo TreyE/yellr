@@ -14,6 +14,11 @@ defmodule Yellr.Validators.CreateProjectRequest do
     field :repository_url, :string
   end
 
+  def blank() do
+    %CreateProjectRequest{}
+    |> cast(%{}, [])
+  end
+
   def new(attrs) do
     changeset(%CreateProjectRequest{}, attrs)
   end
