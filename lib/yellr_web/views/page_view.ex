@@ -21,16 +21,17 @@ defmodule YellrWeb.PageView do
     !Enum.all?(branches, &(&1.passing))
   end
 
+  @spec sort_build_results([YellrWeb.ViewModels.BuildResult.t]) :: [YellrWeb.ViewModels.BuildResult.t]
   def sort_build_results(build_results) do
     Enum.sort_by(
     build_results,
     &(&1),
     fn(a, b) ->
       case {a.branch, b.branch} do
-        {"master", "master"} -> a.timestamp <= b.timestamp
+        {"master", "master"} -> b.timestamp <= a.timestamp
         {"master", _} -> true
         {_, "master"} -> false
-        _ -> a.timestamp <= b.timestamp
+        _ -> b.timestamp <= a.timestamp
       end
     end
     )
