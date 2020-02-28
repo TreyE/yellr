@@ -28,8 +28,9 @@ defmodule YellrWeb.PageView do
     fn(a, b) ->
       case {a.branch, b.branch} do
         {"master", "master"} -> a.timestamp <= b.timestamp
-        {"master", _} -> false
-        {_, "master"} -> true
+        {"master", _} -> true
+        {_, "master"} -> false
+        _ -> a.timestamp <= b.timestamp
       end
     end
     )
