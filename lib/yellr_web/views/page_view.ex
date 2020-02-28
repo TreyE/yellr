@@ -20,4 +20,18 @@ defmodule YellrWeb.PageView do
   def broken_builds(branches) do
     !Enum.all?(branches, &(&1.passing))
   end
+
+  def sort_build_results(build_results) do
+    Enum.sort_by(
+    build_results,
+    &(&1),
+    fn(a, b) ->
+      case {a.branch, b.branch} do
+        {"master", "master"} -> a.timestamp <= b.timestamp
+        {"master", _} -> false
+        {_, "master"} -> true
+      end
+    end
+    )
+  end
 end

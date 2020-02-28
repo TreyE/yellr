@@ -1,5 +1,5 @@
 <div class="row resultcontainer">
-<%= for branch <- @branches do %>
+<%= for branch <- sort_build_results(@branches) do %>
   <div class="card <%= branch_status_class(branch) %> floatcard">
     <div class="card-body">
       <h1 class="card-title"><%= branch.project %></h1>
