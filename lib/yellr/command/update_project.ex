@@ -3,6 +3,7 @@ defmodule Yellr.Command.UpdateProject do
   alias Yellr.Data.Project
   alias Yellr.Validators.CreateProjectRequest
 
+  @spec get_editable_project(number | String.t) :: Ecto.Changeset.t(Yellr.Validators.CreateProjectRequest.t)
   def get_editable_project(id) do
     record = Repo.get!(Project, id)
     CreateProjectRequest.new(%{

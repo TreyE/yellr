@@ -79,6 +79,7 @@ defmodule Yellr do
     Yellr.Command.CreateProject.create_project_from_params(params)
   end
 
+  @spec get_editable_project(number | String.t) :: Ecto.Changeset.t(Yellr.Validators.CreateProjectRequest.t)
   def get_editable_project(id) do
     Yellr.Command.UpdateProject.get_editable_project(id)
   end
