@@ -1,5 +1,6 @@
-<div class="row resultcontainer">
-<%= for branch <- sort_build_results(@branches) do %>
+<div class="resultcontainer">
+<div class="row">
+<%= for branch <- sort_build_results(@branches, master: true) do %>
   <div class="card <%= branch_status_class(branch) %> floatcard">
     <div class="card-body">
       <h1 class="card-title"><%= branch.project %></h1>
@@ -13,6 +14,24 @@
     </div>
   </div>
 <% end %>
+</div>
+
+<div class="row">
+<%= for branch <- sort_build_results(@branches, master: false) do %>
+  <div class="card <%= branch_status_class(branch) %> floatcard">
+    <div class="card-body">
+      <h1 class="card-title"><%= branch.project %></h1>
+      <h3 class="card-title"><%= branch.branch %></h3>
+      <h3 class="card-title"><%= build_time(branch) %></h3>
+      <%= unless branch.passing do %>
+      <div class="card-text">
+      <p class="lead"><%= contributor_list(branch) %></p>
+      </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+</div>
 </div>
 
 <%= if broken_builds(@branches) do %>

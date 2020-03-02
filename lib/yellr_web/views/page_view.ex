@@ -21,8 +21,20 @@ defmodule YellrWeb.PageView do
     !Enum.all?(branches, &(&1.passing))
   end
 
-  @spec sort_build_results([YellrWeb.ViewModels.BuildResult.t]) :: [YellrWeb.ViewModels.BuildResult.t]
-  def sort_build_results(build_results) do
+  @spec sort_build_results([YellrWeb.ViewModels.BuildResult.t], master: boolean) :: [YellrWeb.ViewModels.BuildResult.t]
+  def sort_build_results(build_results, master: true) do
+    build_results
+    |> Enum.filter(fn(br) -> br.branch == "master" end)
+    |> sort_build_results_by_date()
+  end
+
+  def sort_build_results(build_results, master: false) do
+    build_results
+    |> Enum.reject(fn(br) -> br.branch == "master" end)
+    |> sort_build_results_by_date()
+  end
+
+  defp sort_build_results_by_date(build_results) do
     Enum.sort_by(
     build_results,
     &(&1),
