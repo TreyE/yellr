@@ -2,7 +2,9 @@ defmodule YellrWeb.PageView do
   use YellrWeb, :view
 
   def build_time(branch) do
-    DateTime.truncate(branch.timestamp, :second)
+    branch.timestamp
+    |> DateTime.truncate(:second)
+    |> format_build_time()
   end
 
   def contributor_list(branch) do
@@ -55,5 +57,18 @@ defmodule YellrWeb.PageView do
       :eq -> true
       :gt -> false
     end
+  end
+
+  defp format_build_time(bt) do
+    year = bt.year
+    month = bt.month
+    day = bt.day
+    hour = bt.hour
+    minute = bt.minute
+    month_s = String.pad_leading(to_string(month), 2, "0")
+    day_s = String.pad_leading(to_string(day), 2, "0")
+    hour_s = String.pad_leading(to_string(hour), 2, "0")
+    min_s = String.pad_leading(to_string(minute), 2, "0")
+    "#{year}-#{month_s}-#{day_s} #{hour_s}:#{min_s}Z"
   end
 end
