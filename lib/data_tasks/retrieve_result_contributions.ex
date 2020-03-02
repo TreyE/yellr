@@ -17,7 +17,7 @@ defmodule DataTasks.RetrieveResultContributions do
       client = GitData.client_for(build_result.branch.project.repository_url)
       {:ok, commit} = GitData.commit_information(client, build_result.sha)
       build_contribution_for(build_result, commit)
-      # It is  possible for all tasks after this to fail -
+      # It is possible for all tasks after this to fail -
       # if there has been a rebase.
       # We need to wrap this in an error catcher.
       try do
@@ -31,7 +31,6 @@ defmodule DataTasks.RetrieveResultContributions do
       end
       set_as_current_build_result(build_result)
     end)
-    Yellr.broadcast_branch_updates()
   end
 
   defp query_build_result_by_id(br_id) do
@@ -68,6 +67,11 @@ defmodule DataTasks.RetrieveResultContributions do
     query = (from b in Branch,
        where: b.id == ^branch_id
     )
+    branch = Repo.get!(Branch, branch_id)
     Repo.update_all(query, [set: [current_result_id: build_result.id]])
+    case branch.monitored do
+      false -> :ok
+      _ -> Yellr.broadcast_branch_updates()
+    end
   end
 end
