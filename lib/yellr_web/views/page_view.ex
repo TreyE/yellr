@@ -3,6 +3,7 @@ defmodule YellrWeb.PageView do
 
   def build_time(branch) do
     branch.timestamp
+    |> shift_to_eastern_time_zone()
     |> DateTime.truncate(:second)
     |> format_build_time()
   end
@@ -67,8 +68,21 @@ defmodule YellrWeb.PageView do
     minute = bt.minute
     month_s = String.pad_leading(to_string(month), 2, "0")
     day_s = String.pad_leading(to_string(day), 2, "0")
-    hour_s = String.pad_leading(to_string(hour), 2, "0")
     min_s = String.pad_leading(to_string(minute), 2, "0")
-    "#{year}-#{month_s}-#{day_s} #{hour_s}:#{min_s}Z"
+    m_ind = case hour < 12 do
+      false -> "P"
+      _ -> "A"
+    end
+    h_num = case hour > 12 do
+      false -> hour
+      _ -> hour - 12
+    end
+    hour_s = String.pad_leading(to_string(h_num), 2, "0")
+    "#{year}-#{month_s}-#{day_s} #{hour_s}:#{min_s}#{m_ind}"
+  end
+
+  defp shift_to_eastern_time_zone(dt) do
+    tz_info = Timex.Timezone.get("America/New_York", dt)
+    DateTime.add(dt, tz_info.offset_utc, :second)
   end
 end
