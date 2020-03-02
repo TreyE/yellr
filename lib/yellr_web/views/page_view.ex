@@ -28,12 +28,20 @@ defmodule YellrWeb.PageView do
     &(&1),
     fn(a, b) ->
       case {a.branch, b.branch} do
-        {"master", "master"} -> b.timestamp <= a.timestamp
+        {"master", "master"} -> order_date_times(b.timestamp, a.timestamp)
         {"master", _} -> true
         {_, "master"} -> false
-        _ -> b.timestamp <= a.timestamp
+        _ -> order_date_times(b.timestamp, a.timestamp)
       end
     end
     )
+  end
+
+  defp order_date_times(a, b) do
+    case DateTime.compare(a, b) do
+      :lt -> true
+      :eq -> true
+      :gt -> false
+    end
   end
 end
