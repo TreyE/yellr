@@ -19,7 +19,6 @@
 <div class="row">
 <%= for branch <- sort_build_results(@branches, master: false) do %>
   <div class="card <%= branch_status_class(branch) %> floatcard">
-    <div class="branch-success-rate"><span class="badge <%= branch_rate_class(branch) %>>"><%= branch.success_rate %>%</span></div>
     <div class="card-body">
       <h1 class="card-title"><%= branch.project %></h1>
       <h3 class="card-title"><%= branch.branch %></h3>
