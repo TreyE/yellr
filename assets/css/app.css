@@ -17,6 +17,18 @@
   float: left;
 }
 
+.branch-success-rate {
+  margin-top: 0.25em;
+  margin-bottom: -1.5em;
+  padding-right: 0.25em;
+  font-size: 1.5rem;
+  z-index: 500;
+}
+
+.branch-success-rate span {
+  float: right;
+}
+
 @media only screen and (min-width: 768px) {
   .floatcard  {
     max-width: 50%;

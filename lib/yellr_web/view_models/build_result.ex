@@ -1,21 +1,30 @@
 defmodule YellrWeb.ViewModels.BuildResult do
-  defstruct [:project, :branch, :timestamp, :passing, :contributors]
+  defstruct [
+    :project,
+    :branch,
+    :timestamp,
+    :passing,
+    :contributors,
+    :success_rate
+  ]
 
   @type t :: %__MODULE__{
     project: String.t,
     branch: String.t,
     timestamp: DateTime.t,
     passing: boolean,
-    contributors: String.t
+    contributors: String.t,
+    success_rate: number
   }
-  def new(branch_with_associations) do
+  def new({branch_with_associations, _, _}) do
     contributor_list = get_contributor_list(branch_with_associations.current_result)
     %__MODULE__{
       project: branch_with_associations.project.name,
       branch: branch_with_associations.name,
       timestamp: branch_with_associations.current_result.inserted_at,
       passing: (branch_with_associations.current_result.status == "passing"),
-      contributors: contributor_list
+      contributors: contributor_list,
+      success_rate: 100
     }
   end
 

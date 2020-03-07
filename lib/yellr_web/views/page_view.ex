@@ -20,6 +20,14 @@ defmodule YellrWeb.PageView do
     end
   end
 
+  def branch_rate_class(branch) do
+    if branch.passing do
+      "badge-success"
+    else
+      "badge-danger"
+    end
+  end
+
   def broken_builds(branches) do
     !Enum.all?(branches, &(&1.passing))
   end

@@ -19,9 +19,9 @@ defmodule Yellr do
   alias YellrWeb.Channels.BranchUpdateChannel
 
   @spec monitored_branches_with_results() ::
-    [Yellr.Data.Branch.t]
+    [{Yellr.Data.Branch.t, number, number}]
   def monitored_branches_with_results() do
-    Queries.Branches.monitored_branches_with_results()
+    Queries.MonitoredBranches.monitored_branches_with_success_rate()
   end
 
   @spec project_list() ::
