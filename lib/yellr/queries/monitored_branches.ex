@@ -4,7 +4,6 @@ defmodule Yellr.Queries.MonitoredBranches do
   alias Yellr.Repo
   alias Yellr.Data.Branch
   alias Yellr.Data.BuildResult
-  alias Yellr.Data.Project
 
   def monitored_branches_with_success_rate() do
     query = (
@@ -18,7 +17,7 @@ defmodule Yellr.Queries.MonitoredBranches do
       group_by: [b.id],
       select: {
         b,
-        count(br.status == "passing"),
+        sum(fragment("case ? when 'passing' then 1 else 0 end", br.status)),
         count(br.id, :distinct)
       }
     )
