@@ -91,6 +91,6 @@ defmodule YellrWeb.PageView do
 
   defp shift_to_eastern_time_zone(dt) do
     tz_info = Timex.Timezone.get("America/New_York", dt)
-    DateTime.add(dt, tz_info.offset_utc, :second)
+    DateTime.add(dt, tz_info.offset_utc + tz_info.offset_std, :second)
   end
 end
