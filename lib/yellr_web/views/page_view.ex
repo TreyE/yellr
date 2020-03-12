@@ -69,7 +69,7 @@ defmodule YellrWeb.PageView do
   end
 
   defp format_build_time(bt) do
-    year = bt.year
+    # year = bt.year
     month = bt.month
     day = bt.day
     hour = bt.hour
@@ -86,7 +86,7 @@ defmodule YellrWeb.PageView do
       _ -> hour - 12
     end
     hour_s = String.pad_leading(to_string(h_num), 2, "0")
-    "#{year}-#{month_s}-#{day_s} #{hour_s}:#{min_s}#{m_ind}"
+    "#{month_s}/#{day_s} #{hour_s}:#{min_s}#{m_ind}"
   end
 
   defp shift_to_eastern_time_zone(dt) do
