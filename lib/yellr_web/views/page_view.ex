@@ -45,6 +45,22 @@ defmodule YellrWeb.PageView do
     |> sort_build_results_by_date()
   end
 
+  def have_builds?(build_results) do
+    Enum.any?(build_results)
+  end
+
+  def most_recent_was_successful?(build_results) do
+    most_recent_first = Enum.sort_by(
+      build_results,
+      &(&1),
+      fn(a,b) ->
+        order_date_times(b.timestamp, a.timestamp)
+      end
+    )
+    most_recent_build = List.first(most_recent_first)
+    most_recent_build.passing
+  end
+
   defp sort_build_results_by_date(build_results) do
     Enum.sort_by(
     build_results,
