@@ -45,6 +45,13 @@
       <% end %>
       Your browser does not support audio elements.
     </audio>
+  <% else %>
+    <%= if last_build_before_green_was_failure?(@branches) do %>
+      <audio preload id="yellr_branch_audio_autoyell">
+        <source src="<%= Routes.static_path(@conn, "/media/flawless.wav") %>" type="audio/wav">
+        Your browser does not support audio elements.
+      </audio>
+    <% end %>
   <% end %>
 <% end %>
 

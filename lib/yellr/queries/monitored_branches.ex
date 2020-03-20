@@ -4,6 +4,7 @@ defmodule Yellr.Queries.MonitoredBranches do
   alias Yellr.Repo
   alias Yellr.Data.Branch
   alias Yellr.Data.BuildResult
+  alias Yellr.Data.Contribution
 
   def monitored_branches_with_success_rate() do
     query = (
@@ -22,5 +23,22 @@ defmodule Yellr.Queries.MonitoredBranches do
       }
     )
     Repo.all(query)
+  end
+
+  def previous_build_status_for(branch_id) do
+    query = (
+      from br in BuildResult,
+      join: con in Contribution,
+      on: br.id == con.build_result_id,
+      where: br.branch_id == ^branch_id,
+      order_by: [desc: br.inserted_at],
+      group_by: [br.id],
+      limit: 2
+    )
+    brs = Repo.all(query)
+    case Enum.count(brs) > 1 do
+      false -> nil
+      _ -> Enum.at(brs, 1).status
+    end
   end
 end

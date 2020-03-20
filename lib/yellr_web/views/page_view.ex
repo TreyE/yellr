@@ -49,6 +49,18 @@ defmodule YellrWeb.PageView do
     Enum.any?(build_results)
   end
 
+  def last_build_before_green_was_failure?(build_results) do
+    most_recent_first = Enum.sort_by(
+      build_results,
+      &(&1),
+      fn(a,b) ->
+        order_date_times(b.timestamp, a.timestamp)
+      end
+    )
+    most_recent_build = List.first(most_recent_first)
+    YellrWeb.ViewModels.BuildResult.previous_build_was_failure?(most_recent_build)
+  end
+
   def most_recent_was_successful?(build_results) do
     most_recent_first = Enum.sort_by(
       build_results,

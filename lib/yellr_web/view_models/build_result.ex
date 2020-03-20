@@ -5,7 +5,8 @@ defmodule YellrWeb.ViewModels.BuildResult do
     :timestamp,
     :passing,
     :contributors,
-    :success_rate
+    :success_rate,
+    :branch_id
   ]
 
   @type t :: %__MODULE__{
@@ -14,7 +15,8 @@ defmodule YellrWeb.ViewModels.BuildResult do
     timestamp: DateTime.t,
     passing: boolean,
     contributors: String.t,
-    success_rate: number
+    success_rate: number,
+    branch_id: any
   }
   def new({branch_with_associations, passed, total}) do
     success_rate = calculate_success_rate(passed, total)
@@ -25,8 +27,17 @@ defmodule YellrWeb.ViewModels.BuildResult do
       timestamp: branch_with_associations.current_result.inserted_at,
       passing: (branch_with_associations.current_result.status == "passing"),
       contributors: contributor_list,
-      success_rate: success_rate
+      success_rate: success_rate,
+      branch_id: branch_with_associations.id
     }
+  end
+
+  def previous_build_was_failure?(record) do
+    previous_status = Yellr.previous_build_status_for(record.branch_id)
+    case previous_status do
+      nil -> false
+      a -> !(a == "passing")
+    end
   end
 
   def calculate_success_rate(passed, total) do

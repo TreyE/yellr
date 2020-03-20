@@ -71,6 +71,11 @@ defmodule Yellr do
     ReportBuildResult.report_result_from_params(params)
   end
 
+  @spec previous_build_status_for(any) :: String.t | nil
+  def previous_build_status_for(branch_id) do
+    Queries.MonitoredBranches.previous_build_status_for(branch_id)
+  end
+
   def new_project_creation_request() do
     Yellr.Validators.CreateProjectRequest.blank()
   end
