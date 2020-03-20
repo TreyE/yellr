@@ -36,18 +36,16 @@
 </div>
 
 <%= if have_builds?(@branches) do %>
-  <audio preload id="yellr_branch_audio_autoyell">
-    <%= if broken_builds(@branches) do %>
+  <%= if broken_builds(@branches) do %>
+    <audio preload id="yellr_branch_audio_autoyell">
       <%= if most_recent_was_successful?(@branches) do %>
         <source src="<%= Routes.static_path(@conn, "/media/kosh_good.wav") %>" type="audio/wav">
       <% else %>
         <source src="<%= Routes.static_path(@conn, "/media/willhelm.wav") %>" type="audio/wav">
       <% end %>
-    <% else %>
-        <source src="<%= Routes.static_path(@conn, "/media/flawless.wav") %>" type="audio/wav">
-    <% end %>
-    Your browser does not support audio elements.
-  </audio>
+      Your browser does not support audio elements.
+    </audio>
+  <% end %>
 <% end %>
 
 <span id="yellr_branch_update_listener"></span>
