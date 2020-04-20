@@ -5,6 +5,7 @@ defmodule GitData.TeslaClient do
 
   plug Tesla.Middleware.BaseUrl, "https://api.github.com"
   plug Tesla.Middleware.Headers, [{"user-agent", "Yellr Client"}]
+  plug GitData.GithubPat
   plug Tesla.Middleware.DecodeJson
 
   alias GitData.ApiUrls
