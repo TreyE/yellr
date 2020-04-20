@@ -30,7 +30,11 @@ set +x
 
 echo "${compose_file_string/SUBSTITUTE_RELEASE_IMAGE_NAME_HERE/$image_name}" > docker_releases/docker-compose.yml.1
 compose_host_file_string=`cat ./docker_releases/docker-compose.yml.1`
-echo "${compose_host_file_string/SUBSTITUTE_DEPLOY_HOST_NAME_HERE/$TRAVIS_DEPLOY_HOSTNAME}" > docker_releases/docker-compose.yml
+echo "${compose_host_file_string/SUBSTITUTE_DEPLOY_HOST_NAME_HERE/$TRAVIS_DEPLOY_HOSTNAME}" > docker_releases/docker-compose.yml.2
+compose_gh_api_key_string=`cat ./docker_releases/docker-compose.yml.2`
+echo "${compose_gh_api_key_string/SUBSTITUTE_GITHUB_PAT_HERE/$TRAVIS_DEPLOY_GITHUB_PAT}" > docker_releases/docker-compose.yml.3
+compose_api_key_string=`cat ./docker_releases/docker-compose.yml.3`
+echo "${compose_api_key_string/SUBSTITUTE_DEPLOYMENT_API_KEY_HERE/$BUILD_REPORT_API_KEY}" > docker_releases/docker-compose.yml
 
 deploy_file_string=`cat ./travis/deploy`
 echo "${deploy_file_string/SUBSTITUTE_RELEASE_IMAGE_NAME_HERE/$image_name}" > docker_releases/deploy

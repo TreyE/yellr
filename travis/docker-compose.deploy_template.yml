@@ -11,7 +11,8 @@ services:
       - DATABASE_NAME=postgres
       - HOST=SUBSTITUTE_DEPLOY_HOST_NAME_HERE
       - PORT=8080
-      - API_KEY=DEPLOYMENT_TEST_API_KEY
+      - API_KEY=SUBSTITUTE_DEPLOYMENT_API_KEY_HERE
+      - GITHUB_API_PAT=SUBSTITUTE_GITHUB_PAT_HERE
     depends_on:
       - db
     links:
