@@ -12,20 +12,19 @@ env:
     - LANG=en_US.UTF-8
     - LANGUAGE=en_US:en
     - LC_ALL=en_US.UTF-8
-    - TRAVIS_MIX_DEP_CACHE=$(sha512sum mix.lock config/test.exs config/dev.exs config/config.exs)
+    - TRAVIS_MIX_DEP_CACHE=$(sha512sum mix.lock config/test.travis.exs config/dev.exs config/config.exs)
 
 cache:
   directories:
     - deps
-    - build/dev
-    - build/test
+    - _build/dev
+    - _build/test
 
 services:
   - postgresql
   - docker
 
 before_install:
-  - ls -lah build
   - nvm install 12
 
 before_script:
