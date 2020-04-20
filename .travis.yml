@@ -14,6 +14,12 @@ env:
     - LC_ALL=en_US.UTF-8
     - TRAVIS_MIX_DEP_CACHE=$(sha512sum --tag mix.lock)
 
+cache:
+  directories:
+    - deps
+    - build/dev
+    - build/test
+
 services:
   - postgresql
   - docker
