@@ -27,7 +27,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= for branch <- @project.branches do %>
+      <%= for branch <- sort_branches_for_display(@project.branches) do %>
         <tr>
           <td><%= branch.name %></td>
           <td><%= branch.monitored %></td>
