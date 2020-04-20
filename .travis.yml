@@ -12,14 +12,13 @@ env:
     - LANG=en_US.UTF-8
     - LANGUAGE=en_US:en
     - LC_ALL=en_US.UTF-8
-    - TRAVIS_MIX_DEP_CACHE=$(sha512sum mix.lock config/test.travis.exs config/dev.exs config/config.exs assets/yarn.lock)
+    - TRAVIS_MIX_DEP_CACHE=$(sha512sum mix.lock config/test.travis.exs config/dev.exs config/config.exs)
 
 cache:
   directories:
     - deps
     - _build/dev
     - _build/test
-    - assets/node_modules
 
 services:
   - postgresql
